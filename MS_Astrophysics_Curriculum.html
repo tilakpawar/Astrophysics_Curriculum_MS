@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astrophysics Masters Curriculum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f4f0;
+    --bg-tertiary: #eeede8;
+    --text-primary: #1a1a18;
+    --text-secondary: #5a5a56;
+    --text-tertiary: #8a8a84;
+    --border-light: rgba(0,0,0,0.08);
+    --border-mid: rgba(0,0,0,0.14);
+    --border-strong: rgba(0,0,0,0.22);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --font-sans: 'DM Sans', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+    /* Badge colors */
+    --badge-core-bg: #E1F5EE; --badge-core-text: #085041;
+    --badge-math-bg: #EEEDFE; --badge-math-text: #26215C;
+    --badge-obs-bg:  #FAEEDA; --badge-obs-text:  #412402;
+    --badge-theory-bg: #E6F1FB; --badge-theory-text: #042C53;
+    --badge-adv-bg:  #FAECE7; --badge-adv-text:  #4A1B0C;
+    /* Resource icon colors */
+    --ri-yt-bg: #FCEBEB; --ri-yt-text: #A32D2D;
+    --ri-book-bg: #E1F5EE; --ri-book-text: #085041;
+    --ri-web-bg: #E6F1FB; --ri-web-text: #0C447C;
+    --ri-course-bg: #EEEDFE; --ri-course-text: #3C3489;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-primary: #1c1c1a;
+      --bg-secondary: #242422;
+      --bg-tertiary: #2c2c2a;
+      --text-primary: #e8e6de;
+      --text-secondary: #9a9890;
+      --text-tertiary: #6a6a64;
+      --border-light: rgba(255,255,255,0.07);
+      --border-mid: rgba(255,255,255,0.12);
+      --border-strong: rgba(255,255,255,0.2);
+      --badge-core-bg: #04342C; --badge-core-text: #9FE1CB;
+      --badge-math-bg: #26215C; --badge-math-text: #CECBF6;
+      --badge-obs-bg:  #412402; --badge-obs-text:  #FAC775;
+      --badge-theory-bg: #042C53; --badge-theory-text: #B5D4F4;
+      --badge-adv-bg:  #4A1B0C; --badge-adv-text:  #F5C4B3;
+      --ri-yt-bg: #501313; --ri-yt-text: #F7C1C1;
+      --ri-book-bg: #04342C; --ri-book-text: #9FE1CB;
+      --ri-web-bg: #042C53; --ri-web-text: #B5D4F4;
+      --ri-course-bg: #26215C; --ri-course-text: #CECBF6;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .site-header {
+    border-bottom: 1px solid var(--border-light);
+    padding: 48px 0 36px;
+    background: var(--bg-primary);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .header-inner {
+    max-width: 900px; margin: 0 auto; padding: 0 24px;
+  }
+  .header-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-tertiary);
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 400; line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+  .header-desc {
+    font-size: 15px; color: var(--text-secondary);
+    max-width: 600px; line-height: 1.6;
+  }
+
+  /* Controls */
+  .controls {
+    max-width: 900px; margin: 0 auto;
+    padding: 24px 24px 0;
+  }
+  .search-wrap {
+    position: relative; margin-bottom: 14px;
+  }
+  .search-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--text-tertiary); font-size: 16px; pointer-events: none;
+  }
+  .search-box {
+    width: 100%; padding: 11px 14px 11px 42px;
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+  }
+  .search-box:focus {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 3px rgba(55,138,221,0.12);
+  }
+  .search-box::placeholder { color: var(--text-tertiary); }
+
+  .filter-row {
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+    margin-bottom: 8px;
+  }
+  .filter-label {
+    font-size: 12px; font-weight: 500;
+    color: var(--text-tertiary); margin-right: 2px;
+  }
+  .filter-btn {
+    padding: 5px 13px;
+    border-radius: 20px;
+    border: 1px solid var(--border-mid);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 12px; font-weight: 400;
+    cursor: pointer;
+    transition: all .18s;
+  }
+  .filter-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+  .filter-btn.active {
+    background: #E6F1FB; color: #0C447C;
+    border-color: #B5D4F4;
+  }
+  @media (prefers-color-scheme: dark) {
+    .filter-btn.active { background: #042C53; color: #B5D4F4; border-color: #185FA5; }
+  }
+
+  /* Main */
+  .main {
+    max-width: 900px; margin: 0 auto;
+    padding: 24px 24px 64px;
+  }
+
+  /* Chapter */
+  .chapter {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: 12px;
+    transition: box-shadow .2s;
+  }
+  .chapter:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  @media (prefers-color-scheme: dark) {
+    .chapter:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  }
+
+  .chapter-header {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 20px;
+    background: var(--bg-secondary);
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+  }
+  .chapter-header:hover { background: var(--bg-tertiary); }
+
+  .ch-num {
+    font-size: 11px; font-weight: 500;
+    color: var(--text-tertiary);
+    min-width: 22px; padding-top: 3px;
+    letter-spacing: .04em;
+  }
+  .ch-title { flex: 1; }
+  .ch-title h2 {
+    font-size: 15px; font-weight: 500;
+    line-height: 1.35; color: var(--text-primary);
+  }
+  .ch-title p {
+    font-size: 13px; color: var(--text-secondary);
+    margin-top: 3px; line-height: 1.5;
+  }
+  .ch-badge {
+    font-size: 11px; font-weight: 500;
+    padding: 3px 9px; border-radius: 12px;
+    white-space: nowrap; flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-core    { background: var(--badge-core-bg);   color: var(--badge-core-text); }
+  .badge-math    { background: var(--badge-math-bg);   color: var(--badge-math-text); }
+  .badge-obs     { background: var(--badge-obs-bg);    color: var(--badge-obs-text); }
+  .badge-theory  { background: var(--badge-theory-bg); color: var(--badge-theory-text); }
+  .badge-adv     { background: var(--badge-adv-bg);    color: var(--badge-adv-text); }
+
+  .ch-arrow {
+    font-size: 11px; color: var(--text-tertiary);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+    margin-top: 4px; flex-shrink: 0;
+  }
+  .ch-arrow.open { transform: rotate(180deg); }
+
+  /* Chapter body */
+  .chapter-body {
+    display: none; padding: 20px 20px 24px;
+    border-top: 1px solid var(--border-light);
+    animation: slideDown .22s ease-out;
+  }
+  .chapter-body.open { display: block; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Section */
+  .section { margin-bottom: 20px; }
+  .section:last-of-type { margin-bottom: 0; }
+  .section h3 {
+    font-size: 13px; font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 9px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section h3::before {
+    content: '';
+    display: inline-block;
+    width: 3px; height: 13px;
+    border-radius: 2px;
+    background: #378ADD;
+    flex-shrink: 0;
+  }
+  .subtopics {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .sub {
+    padding: 4px 10px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    cursor: default;
+    position: relative;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  .sub:hover {
+    background: var(--bg-primary);
+    border-color: var(--border-mid);
+    color: var(--text-primary);
+  }
+
+  /* Tooltip */
+  #tooltip {
+    position: fixed;
+    z-index: 9999;
+    max-width: 260px;
+    padding: 9px 13px;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .15s ease, transform .15s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+  }
+  #tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #tooltip strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.55;
+    margin-bottom: 3px;
+    letter-spacing: .03em;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px; background: var(--border-light);
+    margin: 18px 0;
+  }
+
+  /* Resources */
+  .resources { margin-top: 4px; }
+  .res-label {
+    font-size: 11px; font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase; letter-spacing: .06em;
+    margin-bottom: 8px;
+  }
+  .res-list { display: flex; flex-direction: column; gap: 5px; }
+  .res-item { display: flex; gap: 9px; align-items: flex-start; }
+  .res-icon {
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 10px; font-weight: 600;
+    margin-top: 1px;
+  }
+  .ri-yt     { background: var(--ri-yt-bg);     color: var(--ri-yt-text); }
+  .ri-book   { background: var(--ri-book-bg);   color: var(--ri-book-text); }
+  .ri-web    { background: var(--ri-web-bg);    color: var(--ri-web-text); }
+  .ri-course { background: var(--ri-course-bg); color: var(--ri-course-text); }
+  .res-text {
+    font-size: 12px; color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .res-text a {
+    color: #185FA5; text-decoration: none;
+    transition: color .15s;
+  }
+  .res-text a:hover { color: #0C447C; text-decoration: underline; }
+  @media (prefers-color-scheme: dark) {
+    .res-text a { color: #85B7EB; }
+    .res-text a:hover { color: #B5D4F4; }
+  }
+
+  /* Books section */
+  .books-section {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-top: 32px;
+  }
+  .books-header {
+    padding: 18px 20px;
+    background: var(--bg-secondary);
+    font-size: 15px; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .books-header i { color: var(--text-secondary); }
+  .books-body { padding: 8px 20px 20px; }
+  .book-item {
+    display: flex; gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .book-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .book-spine {
+    width: 5px; border-radius: 3px;
+    flex-shrink: 0; align-self: stretch; min-height: 36px;
+  }
+  .book-info { flex: 1; }
+  .book-title { font-size: 13px; font-weight: 500; line-height: 1.4; }
+  .book-author { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .book-note { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; line-height: 1.4; }
+
+  /* Hidden */
+  .hidden { display: none !important; }
+
+  /* No results */
+  .no-results {
+    text-align: center; padding: 48px 24px;
+    color: var(--text-tertiary); font-size: 14px;
+  }
+  .no-results i { font-size: 32px; display: block; margin-bottom: 12px; }
+
+  /* Footer */
+  .site-footer {
+    text-align: center; padding: 32px 24px;
+    font-size: 12px; color: var(--text-tertiary);
+    border-top: 1px solid var(--border-light);
+    max-width: 900px; margin: 0 auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .site-header { padding: 28px 0 20px; }
+    .ch-badge { display: none; }
+    .chapter-header { padding: 14px 16px; gap: 10px; }
+    .chapter-body { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="tooltip"><strong id="tooltip-label"></strong><span id="tooltip-text"></span></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-eyebrow">Masters-level reference</div>
+    <h1 class="header-title">Astrophysics Curriculum</h1>
+    <p class="header-desc">Comprehensive topic map drawn from the best Masters programmes worldwide — expand any chapter to see subtopics and free learning resources.</p>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <i class="ti ti-search search-icon"></i>
+    <input class="search-box" type="text" id="search" placeholder="Search topics, subtopics, or resources…" oninput="filterAll(this.value)" autocomplete="off">
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterBadge('all',this)">All</button>
+    <button class="filter-btn" onclick="filterBadge('core',this)">Core foundations</button>
+    <button class="filter-btn" onclick="filterBadge('math',this)">Math &amp; methods</button>
+    <button class="filter-btn" onclick="filterBadge('obs',this)">Observational</button>
+    <button class="filter-btn" onclick="filterBadge('theory',this)">Theory</button>
+    <button class="filter-btn" onclick="filterBadge('adv',this)">Advanced / specialised</button>
+  </div>
+</div>
+
+<main class="main">
+  <div id="chapters"></div>
+  <div id="no-results" class="no-results hidden">
+    <i class="ti ti-telescope"></i>
+    No chapters match your search. Try different keywords.
+  </div>
+
+  <div class="books-section">
+    <div class="books-header">
+      <i class="ti ti-books" aria-hidden="true"></i>
+      Essential textbooks (not necessarily free)
+    </div>
+    <div class="books-body" id="books-body"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  Curriculum spans 16 chapters · 18 essential textbooks · free resources attached to each chapter
+</footer>
+
+<script>
+const data = [
+  {
+    num:"01", badge:"core", badgeLabel:"Core foundations",
+    title:"Classical mechanics & special relativity",
+    desc:"The dynamical bedrock beneath all astrophysical motion — from Kepler to Lorentz.",
+    sections:[
+      {name:"Newtonian mechanics", subs:["Newton's laws","Conservation of energy & momentum","Rotational dynamics & angular momentum","Gravitational potential & orbits","Tidal forces","N-body problem & chaos"]},
+      {name:"Lagrangian & Hamiltonian mechanics", subs:["Principle of least action","Euler-Lagrange equations","Phase space & Liouville's theorem","Poisson brackets","Integrable systems"]},
+      {name:"Special relativity", subs:["Postulates & Lorentz transformations","4-vectors & spacetime interval","Relativistic energy-momentum","Doppler effect & aberration","Relativistic dynamics","Minkowski diagrams"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/">MIT OCW 8.01 — Classical Mechanics</a> (full course, free)'},
+      {type:"course",text:'<a href="https://www.coursera.org/learn/einstein-relativity">Einstein\'s Special Theory of Relativity — Coursera (Stanford)</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP61qDex7XslwNJ-c3lfHgzB6">MIT 8.01 lecture playlist — YouTube</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/watch?v=NblR01hHK6U">Leonard Susskind — Classical Mechanics (Stanford, YouTube)</a>'},
+      {type:"book", text:'Morin, "Introduction to Classical Mechanics" — rigorous, problem-rich (free draft chapters online)'},
+      {type:"book", text:'Griffiths, "Introduction to Electrodynamics" Ch. 10-12 for SR applications'},
+    ]
+  },
+  {
+    num:"02", badge:"core", badgeLabel:"Core foundations",
+    title:"Electromagnetism & plasma physics",
+    desc:"Maxwell's equations govern radiation, magnetic fields in space, and stellar atmospheres.",
+    sections:[
+      {name:"Classical electromagnetism", subs:["Maxwell's equations in vacuum & matter","Electromagnetic waves","Poynting vector & radiation pressure","Multipole radiation","Liénard-Wiechert potentials","Synchrotron & bremsstrahlung radiation"]},
+      {name:"Plasma physics basics", subs:["Debye shielding & plasma parameter","Single-particle motion","MHD equations","Alfvén waves","Magnetic reconnection","Solar wind & heliosphere"]},
+      {name:"Radiation processes", subs:["Blackbody radiation & Planck function","Thermal bremsstrahlung","Inverse Compton scattering","Pair production & annihilation","Polarisation of radiation"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/">MIT OCW 8.03 — Vibrations & Waves</a>'},
+      {type:"course",text:'<a href="https://www.edx.org/learn/plasma-physics">Introduction to Plasma Physics — edX (MIT)</a>'},
+      {type:"yt",   text:'Griffiths EM worked problems — many channels on YouTube'},
+      {type:"book", text:'Griffiths, "Introduction to Electrodynamics" 4th ed. — the standard undergraduate text'},
+      {type:"book", text:'Rybicki & Lightman, "Radiative Processes in Astrophysics" — indispensable graduate reference'},
+    ]
+  },
+  {
+    num:"03", badge:"math", badgeLabel:"Math & methods",
+    title:"Mathematical methods for astrophysics",
+    desc:"The analytical and computational toolkit every astrophysicist uses daily.",
+    sections:[
+      {name:"Analysis & linear algebra", subs:["Vector calculus (div, grad, curl, Stokes)","Linear ODEs & PDEs","Fourier & Laplace transforms","Eigenvalue problems","Tensors & index notation","Green's functions"]},
+      {name:"Probability & statistics", subs:["Probability distributions (Gaussian, Poisson, Binomial)","Bayesian inference & Bayes' theorem","Maximum likelihood estimation","Hypothesis testing & p-values","Monte Carlo methods","Markov Chain Monte Carlo (MCMC)","Fisher information & Cramér-Rao bound"]},
+      {name:"Numerical methods", subs:["Finite difference & finite element methods","N-body integrators (Verlet, RK4, symplectic)","Smoothed Particle Hydrodynamics (SPH)","Adaptive mesh refinement (AMR)","Fourier-based solvers","Machine learning in astrophysics (CNNs, GPs, normalising flows)"]},
+      {name:"Complex analysis & special functions", subs:["Contour integration","Residue theorem","Legendre polynomials & spherical harmonics","Bessel functions","Hypergeometric functions"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://ocw.mit.edu/courses/18-303-linear-partial-differential-equations-fall-2006/">MIT OCW 18.303 — PDEs</a>'},
+      {type:"course",text:'<a href="https://www.coursera.org/learn/bayesian-statistics">Bayesian Statistics — Coursera (Duke)</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC">3Blue1Brown — Essence of Linear Algebra</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/c/3blue1brown">3Blue1Brown — Essence of Calculus</a>'},
+      {type:"web",  text:'<a href="https://astrostatistics.psu.edu/su09/lecturenotes.html">Penn State Astrostatistics Summer School notes (free PDF)</a>'},
+      {type:"book", text:'Arfken, Weber & Harris, "Mathematical Methods for Physicists" — the graduate reference'},
+      {type:"book", text:'Ivezić et al., "Statistics, Data Mining, and Machine Learning in Astronomy" — free PDF via Princeton UP'},
+    ]
+  },
+  {
+    num:"04", badge:"core", badgeLabel:"Core foundations",
+    title:"Thermodynamics & statistical mechanics",
+    desc:"From stellar interiors to the CMB: equilibrium, entropy, and the quantum gas.",
+    sections:[
+      {name:"Classical thermodynamics", subs:["Laws of thermodynamics","Carnot cycle & entropy","Thermodynamic potentials (Helmholtz, Gibbs)","Phase transitions & Clausius-Clapeyron","Equation of state"]},
+      {name:"Statistical mechanics", subs:["Microcanonical, canonical & grand canonical ensembles","Partition functions","Fermi-Dirac & Bose-Einstein statistics","Bose-Einstein condensation","Degenerate electron gas","Saha equation & ionisation equilibrium"]},
+      {name:"Radiation thermodynamics", subs:["Planck distribution derivation","Stefan-Boltzmann law","Wien's displacement law","Radiation entropy","Photon gas"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://ocw.mit.edu/courses/8-333-statistical-mechanics-i-statistical-mechanics-of-particles-fall-2013/">MIT OCW 8.333 — Statistical Mechanics</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60gl3fdUTKRrt5t_GPx2sRg">MIT 8.333 lectures — YouTube</a>'},
+      {type:"book", text:'Reif, "Fundamentals of Statistical and Thermal Physics" — classic graduate text'},
+      {type:"book", text:'Kittel & Kroemer, "Thermal Physics" — clear undergraduate-level foundation'},
+    ]
+  },
+  {
+    num:"05", badge:"core", badgeLabel:"Core foundations",
+    title:"Quantum mechanics",
+    desc:"Atomic spectra, nuclear reactions, and degenerate matter all rest on QM.",
+    sections:[
+      {name:"Foundations", subs:["Wave-particle duality & de Broglie","Schrödinger equation","Operators, observables & Heisenberg uncertainty","Hilbert space & Dirac notation","Measurement & Born rule"]},
+      {name:"Exactly solvable systems", subs:["Infinite square well & harmonic oscillator","Hydrogen atom & hydrogen-like ions","Spin and Pauli matrices","Angular momentum addition (Clebsch-Gordan)"]},
+      {name:"Perturbation theory & applications", subs:["Time-independent perturbation theory","Time-dependent perturbation theory","Fermi's Golden Rule","Fine & hyperfine structure","Zeeman & Stark effects","Selection rules & atomic transitions"]},
+      {name:"Quantum statistics & many-body", subs:["Identical particles & exchange symmetry","Second quantisation basics","WKB approximation","Tunnelling & alpha decay"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/">MIT OCW 8.04 — Quantum Physics I</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60cspQn3N9dYRPiyVWDd80g">MIT 8.04 Quantum Physics — YouTube</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/watch?v=2h1E3YJjQqQ">Leonard Susskind — Quantum Mechanics (Stanford, YouTube)</a>'},
+      {type:"book", text:'Griffiths, "Introduction to Quantum Mechanics" 3rd ed. — essential undergraduate-to-graduate bridge'},
+      {type:"book", text:'Sakurai & Napolitano, "Modern Quantum Mechanics" — the standard graduate text'},
+    ]
+  },
+  {
+    num:"06", badge:"core", badgeLabel:"Core foundations",
+    title:"General relativity",
+    desc:"Einstein's theory governs neutron stars, black holes, gravitational waves, and cosmology.",
+    sections:[
+      {name:"Differential geometry", subs:["Manifolds & tangent spaces","Metric tensor & line element","Covariant derivatives & Christoffel symbols","Riemann, Ricci & Einstein tensors","Geodesics"]},
+      {name:"Einstein's field equations", subs:["Stress-energy tensor","Einstein equations with cosmological constant","Linearised GR & gravitational waves","Schwarzschild solution","Birkhoff's theorem"]},
+      {name:"Black holes", subs:["Schwarzschild black hole & horizon","Kerr & Kerr-Newman solutions","Penrose diagrams","Hawking radiation (basics)","No-hair theorem","Black hole thermodynamics"]},
+      {name:"GR applications", subs:["Gravitational lensing","Frame dragging & Lense-Thirring","Perihelion precession","Gravitational redshift","Tests of GR (Cassini, VLBI, PSR 1913+16)","Gravitational wave generation (quadrupole formula)"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://ocw.mit.edu/courses/8-962-general-relativity-spring-2020/">MIT OCW 8.962 — General Relativity (2020)</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PLFeEvEPtX_0S6vxxiiNPrJbLu9aK1UyoI">MIT 8.962 GR lectures — YouTube</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/watch?v=foRPKAKZWx8">Leonard Susskind — General Relativity (Stanford, YouTube)</a>'},
+      {type:"web",  text:'<a href="https://www.lightandmatter.com/genrel/">B. Crowell, "General Relativity" — free online book</a>'},
+      {type:"book", text:'Carroll, "Spacetime and Geometry" — modern pedagogical GR (free draft online)'},
+      {type:"book", text:'Misner, Thorne & Wheeler, "Gravitation" (MTW) — encyclopaedic reference'},
+      {type:"book", text:'Hartle, "Gravity: An Introduction to Einstein\'s General Relativity" — gentler entry'},
+    ]
+  },
+  {
+    num:"07", badge:"obs", badgeLabel:"Observational",
+    title:"Observational techniques & instrumentation",
+    desc:"How we actually measure the universe — detectors, telescopes, and data reduction.",
+    sections:[
+      {name:"Telescopes & optics", subs:["Reflecting & refracting telescopes","Focal length, f-ratio & plate scale","Adaptive & active optics","Interferometry (VLBI, optical)","Space telescopes (HST, JWST, Chandra, XMM, Fermi)"]},
+      {name:"Detectors & sensors", subs:["CCDs & CMOS sensors","Photomultiplier tubes","Bolometers & calorimeters","Radio receivers & heterodyne detection","X-ray & gamma-ray detectors"]},
+      {name:"Photometry & astrometry", subs:["Magnitude systems (apparent, absolute, AB)","Colour indices & filter systems (UBVRI, Sloan)","Point spread function (PSF)","Astrometric reduction","Parallax & proper motion"]},
+      {name:"Spectroscopy", subs:["Spectrograph design & resolving power","Echelle spectrographs","Line identification & Doppler shifts","Radial velocity measurement","Equivalent width & curve of growth"]},
+      {name:"Multi-messenger astronomy", subs:["Gravitational wave detectors (LIGO/Virgo)","Neutrino observatories (IceCube, SNO)","Ultra-high energy cosmic rays","Gamma-ray bursts as multi-messenger events"]},
+    ],
+    resources:[
+      {type:"yt",   text:'<a href="https://www.youtube.com/c/NASAGodard">NASA Goddard YouTube channel — instrumentation & missions</a>'},
+      {type:"course",text:'<a href="https://www.edx.org/learn/astrophysics">ANU Astrophysics courses on edX — includes observational methods</a>'},
+      {type:"book", text:'Chromey, "To Measure the Sky" — accessible intro to observational astronomy'},
+      {type:"book", text:'Howell, "Handbook of CCD Astronomy" — detector-focused reference'},
+      {type:"book", text:'Wall & Jenkins, "Practical Statistics for Astronomers"'},
+    ]
+  },
+  {
+    num:"08", badge:"core", badgeLabel:"Core foundations",
+    title:"Stellar structure & evolution",
+    desc:"From protostars to white dwarfs, neutron stars, and supernovae — the life of stars.",
+    sections:[
+      {name:"Stellar structure equations", subs:["Hydrostatic equilibrium","Mass continuity","Energy transport (radiative, convective)","Energy generation","Equation of state (ideal gas, degenerate)","Polytropes & Lane-Emden equation"]},
+      {name:"Nuclear physics of stars", subs:["Proton-proton chain","CNO cycle","Triple-alpha process","s- & r-process nucleosynthesis","Electron capture & beta decay in stars","Neutrino production"]},
+      {name:"Stellar evolution", subs:["Pre-main-sequence (Hayashi track)","Zero-age main sequence (ZAMS)","Main sequence timescales","Red giant branch","Horizontal branch & AGB","Planetary nebulae","White dwarf cooling","Chandrasekhar mass limit"]},
+      {name:"Massive stars & endpoints", subs:["Wolf-Rayet stars & mass loss","Core collapse supernovae","Type Ia supernovae","Neutron star formation","Black hole formation channels","Pair-instability supernovae"]},
+      {name:"Stellar atmospheres", subs:["LTE & non-LTE","Opacity sources","Line formation & radiative transfer","Model atmospheres (Kurucz, MARCS, PHOENIX)","Stellar winds"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://www.astro.princeton.edu/~gk/A403/403.html">Princeton A403 — Stellar Structure & Evolution notes (free)</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60Dn0XPjQdQNGNLiCFm8pl7">MIT Stellar Astrophysics — YouTube</a>'},
+      {type:"course",text:'<a href="https://www.edx.org/learn/astrophysics/australian-national-university-astrophysics">ANU Astrophysics (edX) — covers stellar evolution</a>'},
+      {type:"book", text:'Prialnik, "An Introduction to the Theory of Stellar Structure and Evolution" — clear and modern'},
+      {type:"book", text:'Kippenhahn, Weigert & Weiss, "Stellar Structure and Evolution" — authoritative graduate text'},
+      {type:"book", text:'Böhm-Vitense, "Introduction to Stellar Astrophysics" Vol. 1-3'},
+    ]
+  },
+  {
+    num:"09", badge:"core", badgeLabel:"Core foundations",
+    title:"The Solar System & planetary science",
+    desc:"Formation, dynamics, and geology of planets, moons, asteroids, and comets.",
+    sections:[
+      {name:"Solar System formation", subs:["Solar nebula theory","Disk instability vs. core accretion","Planetesimal formation","Grand Tack & Nice model","Late Heavy Bombardment","Minimum mass solar nebula (MMSN)"]},
+      {name:"Planetary interiors & surfaces", subs:["Planetary differentiation","Heat sources (accretion, radioactive decay)","Seismology & interior structure","Volcanism & tectonics","Impact cratering","Geomorphology"]},
+      {name:"Planetary atmospheres", subs:["Hydrostatic equilibrium & scale height","Atmospheric escape (Jeans, hydrodynamic)","Greenhouse effect","Photochemistry & UV dissociation","Comparative planetology (Venus, Mars, Titan)","Giant planet atmospheres"]},
+      {name:"Small Solar System bodies", subs:["Asteroid belt & Kirkwood gaps","Kuiper Belt & scattered disk","Oort Cloud","Cometary physics (coma, tail, nucleus)","Trans-Neptunian objects (TNOs)","Meteor showers"]},
+      {name:"Orbital dynamics", subs:["Kepler's laws","Orbital elements & Keplerian orbits","Resonances & chaos","Tisserand parameter","Kozai-Lidov mechanism","Lagrange points & Trojan asteroids"]},
+    ],
+    resources:[
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtPAJr1ysd5yGIyiSFuh0mIL">Crash Course Astronomy — YouTube</a>'},
+      {type:"course",text:'<a href="https://www.coursera.org/learn/astro">Astronomy: Exploring Time and Space — Coursera (U Arizona)</a>'},
+      {type:"web",  text:'<a href="https://solarsystem.nasa.gov/planets/overview/">NASA Solar System Exploration — interactive resources</a>'},
+      {type:"book", text:'de Pater & Lissauer, "Planetary Sciences" 2nd ed. — the standard graduate text'},
+      {type:"book", text:'Murray & Dermott, "Solar System Dynamics" — definitive orbital mechanics reference'},
+    ]
+  },
+  {
+    num:"10", badge:"core", badgeLabel:"Core foundations",
+    title:"The interstellar medium (ISM) & star formation",
+    desc:"Gas, dust, magnetic fields, and the cycle of matter between stars.",
+    sections:[
+      {name:"Phases of the ISM", subs:["Cold neutral medium (CNM)","Warm neutral medium (WNM)","Warm ionised medium (WIM)","Hot ionised medium (HIM)","Molecular clouds","H II regions & Strömgren spheres"]},
+      {name:"Radiative processes in the ISM", subs:["21 cm hydrogen line","Molecular line emission (CO, H₂)","Dust emission & extinction","Polycyclic aromatic hydrocarbons (PAHs)","Synchrotron emission","Free-free emission"]},
+      {name:"Star formation", subs:["Jeans instability & Jeans mass","Magnetic support & ambipolar diffusion","Protostellar collapse","Protoplanetary disk formation","Bipolar outflows & jets","Initial mass function (IMF)","OB associations & triggered star formation"]},
+      {name:"Feedback & the ISM cycle", subs:["Stellar winds & HII region expansion","Supernova remnants & blast waves","Galactic fountains","Chemical enrichment","Dust lifecycle"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://www.mpia.de/homes/ppvi/chapters.html">Protostars & Planets VI — free chapter PDFs</a>'},
+      {type:"book", text:'Draine, "Physics of the Interstellar and Intergalactic Medium" — comprehensive modern text'},
+      {type:"book", text:'Dyson & Williams, "The Physics of the Interstellar Medium" — shorter classic'},
+    ]
+  },
+  {
+    num:"11", badge:"core", badgeLabel:"Core foundations",
+    title:"Galaxies & galactic dynamics",
+    desc:"Structure, kinematics, and formation of galaxies — from the Milky Way to clusters.",
+    sections:[
+      {name:"Galactic structure", subs:["Milky Way components (disk, bulge, bar, halo)","Stellar populations (Pop I, II, III)","Spiral arm theories (density wave, dynamic)","Galactic centre & Sgr A*","Rotation curve & dark matter evidence"]},
+      {name:"Galactic dynamics", subs:["Collisionless Boltzmann equation","Jeans equations","Orbits in axisymmetric potentials","Epicyclic approximation","Violent relaxation & phase mixing","Tidal stripping & galaxy harassment"]},
+      {name:"Galaxy formation & evolution", subs:["Semi-analytic models","Galaxy mergers & interactions","Morphological classification (Hubble sequence)","Lenticular & elliptical galaxies","Dwarf galaxies & satellites","Metallicity gradients","Downsizing & quenching"]},
+      {name:"AGN & supermassive black holes", subs:["Seyfert galaxies, quasars, BL Lac, blazars","Accretion disk physics","Relativistic jets","Unification model","M-σ relation","Feedback & co-evolution"]},
+      {name:"Galaxy clusters & large-scale structure", subs:["Cluster masses & virial theorem","Intracluster medium (ICM)","Sunyaev-Zel'dovich effect","Gravitational lensing by clusters","Cosmic web (filaments, voids, nodes)","Baryon acoustic oscillations (BAO)"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://www.astro.yale.edu/vdbosch/astro610_lecture1.pdf">Frank van den Bosch — Galaxy Formation lectures (Yale, free PDF)</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP6377z-mKtFq3jtHiGZyeKPK">MIT 8.902 — Astrophysics II YouTube playlist</a>'},
+      {type:"course",text:'<a href="https://www.edx.org/learn/astrophysics/the-australian-national-university-galaxies-and-cosmology">ANU Galaxies and Cosmology — edX</a>'},
+      {type:"book", text:'Binney & Merrifield, "Galactic Astronomy" — observational focus'},
+      {type:"book", text:'Binney & Tremaine, "Galactic Dynamics" 2nd ed. — the definitive theoretical reference'},
+      {type:"book", text:'Mo, van den Bosch & White, "Galaxy Formation and Evolution" — comprehensive modern text'},
+    ]
+  },
+  {
+    num:"12", badge:"theory", badgeLabel:"Theory",
+    title:"Cosmology",
+    desc:"The origin, structure, and fate of the Universe — from the Big Bang to dark energy.",
+    sections:[
+      {name:"Expanding universe & FRW metric", subs:["Cosmological principle","Friedmann-Robertson-Walker (FRW) metric","Friedmann equations","Scale factor & Hubble law","Comoving coordinates & proper distance","Redshift-distance relations"]},
+      {name:"Cosmic content & expansion history", subs:["Critical density & density parameters (Ω)","Dark matter evidence & candidates","Dark energy & cosmological constant","Matter- & radiation-dominated epochs","Deceleration & acceleration","Age & fate of the universe"]},
+      {name:"Big Bang thermodynamics", subs:["Thermal history of the early universe","Big Bang nucleosynthesis (BBN)","Recombination & decoupling","Cosmic Microwave Background (CMB)","Neutrino decoupling"]},
+      {name:"Cosmic Microwave Background", subs:["Blackbody spectrum & COBE","Temperature anisotropies","Angular power spectrum & acoustic peaks","Silk damping","Polarisation (E- and B-modes)","CMB lensing"]},
+      {name:"Inflation", subs:["Horizon & flatness problems","Slow-roll inflation","Inflaton field","Primordial power spectrum","Gravitational waves from inflation","Eternal inflation & multiverse"]},
+      {name:"Structure formation", subs:["Jeans instability in expanding universe","Linear perturbation theory","Transfer function","Harrison-Zel'dovich spectrum","Non-linear collapse (spherical top-hat)","Press-Schechter formalism","N-body simulations (IllustrisTNG, EAGLE)"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://www.damtp.cam.ac.uk/user/tong/cosmo.html">David Tong — Cosmology lecture notes (Cambridge, free PDF)</a>'},
+      {type:"course",text:'<a href="https://www.coursera.org/learn/cosmology">Introduction to Cosmology — Coursera (Caltech, free to audit)</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP63VIBiWtvjlXdfUSytE1c6n">Leonard Susskind — Cosmology (Stanford, YouTube)</a>'},
+      {type:"web",  text:'<a href="https://ned.ipac.caltech.edu/level5/Liddle/Liddle_contents.html">Liddle, "An Introduction to Modern Cosmology" — free at NED/IPAC</a>'},
+      {type:"book", text:'Ryden, "Introduction to Cosmology" 2nd ed. — the best starting point (free online)'},
+      {type:"book", text:'Dodelson & Schmidt, "Modern Cosmology" 2nd ed. — advanced graduate treatment'},
+      {type:"book", text:'Weinberg, "Cosmology" — rigorous and exhaustive'},
+      {type:"book", text:'Peacock, "Cosmological Physics" — excellent for LSS and CMB theory'},
+    ]
+  },
+  {
+    num:"13", badge:"theory", badgeLabel:"Theory",
+    title:"High-energy astrophysics & compact objects",
+    desc:"Neutron stars, pulsars, black hole accretion, X-ray binaries, and extreme physics.",
+    sections:[
+      {name:"Neutron star physics", subs:["Tolman-Oppenheimer-Volkoff (TOV) equation","Neutron star equation of state","Nuclear matter & quark-gluon plasma","Maximum mass & radius","Neutron star cooling","Superfluidity & superconductivity in NSs"]},
+      {name:"Pulsars", subs:["Pulsar timing & the pulsar equation","Spin-down & dipole radiation","Pulsar magnetosphere & pair cascade","Millisecond pulsars & recycling","Pulsar timing arrays (PTAs) & GW background","Magnetars & soft gamma repeaters"]},
+      {name:"Black hole accretion", subs:["Eddington luminosity","Bondi accretion","Thin disk (Shakura-Sunyaev) model","Thick disks & advection-dominated flows (ADAF)","Magnetic fields in accretion","Quasi-periodic oscillations (QPOs)"]},
+      {name:"Gamma-ray bursts (GRBs)", subs:["Long vs. short GRBs","Fireball model & Lorentz factor","Afterglow physics","Kilonova & r-process (GW170817)","GRB host galaxies"]},
+      {name:"Cosmic rays & particle astrophysics", subs:["Energy spectrum & composition","Acceleration (Fermi mechanisms)","Propagation in the Galaxy","Ultra-high energy CRs (Auger, TA)","Neutrino astronomy (IceCube)","Very-high-energy gamma rays (HESS, MAGIC, CTA)"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://www.physics.mcgill.ca/~vkaspi/papers/kaspi_review.pdf">Kaspi, "Magnetars" review — free PDF</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/watch?v=qPKj0YnKANw">NASA Goddard — Neutron Stars Explained (YouTube)</a>'},
+      {type:"book", text:'Shapiro & Teukolsky, "Black Holes, White Dwarfs, and Neutron Stars" — the classic graduate text'},
+      {type:"book", text:'Longair, "High Energy Astrophysics" 3rd ed. — authoritative and modern'},
+      {type:"book", text:'Frank, King & Raine, "Accretion Power in Astrophysics" — focused reference'},
+    ]
+  },
+  {
+    num:"14", badge:"adv", badgeLabel:"Advanced / specialised",
+    title:"Gravitational waves & multi-messenger astronomy",
+    desc:"GW detection, source physics, and the era of multi-messenger observations.",
+    sections:[
+      {name:"GW theory", subs:["Linearised GR & wave equation","TT gauge & polarisations (h₊, h×)","Quadrupole formula","GW energy flux & luminosity","Matched filtering & signal processing"]},
+      {name:"GW sources", subs:["Binary black hole mergers","Binary neutron star mergers","BH-NS binaries","Core-collapse supernovae","Continuous waves (rotating NSs)","Stochastic GW background"]},
+      {name:"Detectors", subs:["Michelson interferometer principle","Fabry-Pérot cavities & power recycling","Noise sources (shot, radiation pressure, seismic)","LIGO/Virgo/KAGRA","LISA (space-based)","Pulsar timing arrays (NANOGrav)"]},
+      {name:"Multi-messenger events", subs:["GW170817 & kilonova AT2017gfo","Electromagnetic follow-up strategies","Hubble constant from GW standard sirens","IceCube neutrinos + gamma rays (TXS 0506+056)","BOAT GRB 2022"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://gwosc.org/">GWOSC — LIGO data, tutorials & open science (free)</a>'},
+      {type:"web",  text:'<a href="https://www.gw-openscience.org/tutorials/">GWOSC Python tutorials for GW data analysis (free)</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/watch?v=4GbWfNHtHRg">LIGO Collaboration — GW detection explained (YouTube)</a>'},
+      {type:"book", text:'Maggiore, "Gravitational Waves: Theory and Experiments" Vol. 1 — definitive text'},
+      {type:"book", text:'Maggiore, "Gravitational Waves: Astrophysics and Cosmology" Vol. 2'},
+    ]
+  },
+  {
+    num:"15", badge:"adv", badgeLabel:"Advanced / specialised",
+    title:"Exoplanets & astrobiology",
+    desc:"Detection methods, atmospheres, habitability, and the search for life beyond Earth.",
+    sections:[
+      {name:"Detection methods", subs:["Radial velocity (RV)","Transit photometry","Direct imaging","Microlensing","Astrometry (Gaia)","Transit timing variations (TTVs)"]},
+      {name:"Exoplanet characterisation", subs:["Mass-radius relationships","Bulk composition models","Transmission spectroscopy","Emission spectroscopy & phase curves","Atmospheric retrieval","Biosignatures (O₂, O₃, CH₄, phosphine)"]},
+      {name:"Habitability", subs:["Habitable zone (classical & extended)","Stellar irradiation & albedo","Tidal locking","Atmospheric stability","Stellar activity & UV flux","Ocean & land distribution"]},
+      {name:"Astrobiology", subs:["Origin of life theories","Extremophiles & limits of life","Panspermia","Drake equation & Fermi paradox","SETI & technosignatures","Mars & icy moon missions (Europa Clipper, Enceladus)"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://exoplanetarchive.ipac.caltech.edu/">NASA Exoplanet Archive — interactive database (free)</a>'},
+      {type:"course",text:'<a href="https://www.coursera.org/learn/astro">Astronomy & Astrobiology — Coursera (various)</a>'},
+      {type:"book", text:'Perryman, "The Exoplanet Handbook" 2nd ed. — comprehensive and up to date'},
+      {type:"book", text:'Seager, "Exoplanets" — MIT Press, edited collection of reviews'},
+    ]
+  },
+  {
+    num:"16", badge:"adv", badgeLabel:"Advanced / specialised",
+    title:"Computational astrophysics & data science",
+    desc:"Simulations, pipelines, and the practical tools of modern astrophysics research.",
+    sections:[
+      {name:"N-body & hydrodynamics simulations", subs:["Tree codes & fast multipole method","SPH (Gadget, SWIFT)","AMR hydro (ENZO, FLASH, Athena++)","MHD codes","Radiative transfer (RADMC-3D, CLOUDY)","Cosmological simulations (IllustrisTNG, EAGLE, FIRE)"]},
+      {name:"Data reduction & pipelines", subs:["Python ecosystem (Astropy, NumPy, SciPy)","IRAF & DS9","Aperture & PSF photometry","Spectral extraction","Time series analysis","Pipeline automation (Snakemake, Luigi)"]},
+      {name:"Machine learning in astrophysics", subs:["Random forests for classification","Convolutional neural networks (morphology, transients)","Variational autoencoders (anomaly detection)","Gaussian processes (RV, lightcurves)","Normalising flows (posterior estimation)","Foundation models & LLMs in astronomy"]},
+      {name:"High-performance computing", subs:["Parallelisation (MPI, OpenMP)","GPU computing (CUDA, JAX)","Cluster job scheduling (SLURM, PBS)","Data formats (FITS, HDF5, Zarr)","Version control & reproducibility (Git, Docker)"]},
+    ],
+    resources:[
+      {type:"web",  text:'<a href="https://www.astropy.org/astropy-tutorials/">Astropy Tutorials — free Jupyter notebook tutorials</a>'},
+      {type:"course",text:'<a href="https://www.edx.org/learn/python">Python for Data Science — edX (various)</a>'},
+      {type:"yt",   text:'<a href="https://www.youtube.com/c/ScienceWithSam">Science with Sam — Python for astrophysics (YouTube)</a>'},
+      {type:"web",  text:'<a href="https://github.com/astroML/astroML">AstroML — machine learning for astronomy (free code + book)</a>'},
+      {type:"book", text:'VanderPlas, "Python Data Science Handbook" — free online at jakevdp.github.io'},
+      {type:"book", text:'Ivezić et al., "Statistics, Data Mining, and Machine Learning in Astronomy" — free PDF'},
+    ]
+  },
+];
+
+const books = [
+  {color:"#3B8BD4",title:"Ryden — Introduction to Cosmology (2nd ed.)",author:"Barbara Ryden",note:"Free online. The best first cosmology textbook."},
+  {color:"#1D9E75",title:"Carroll — Spacetime and Geometry",author:"Sean M. Carroll",note:"Free draft online. Clear, modern GR with astrophysical emphasis."},
+  {color:"#D85A30",title:"Binney & Tremaine — Galactic Dynamics (2nd ed.)",author:"Binney & Tremaine",note:"The definitive reference for galactic structure and dynamics."},
+  {color:"#534AB7",title:"Rybicki & Lightman — Radiative Processes in Astrophysics",author:"Rybicki & Lightman",note:"Essential for understanding radiation physics across all sub-fields."},
+  {color:"#BA7517",title:"Kippenhahn, Weigert & Weiss — Stellar Structure and Evolution",author:"Kippenhahn, Weigert & Weiss",note:"The authoritative stellar evolution text."},
+  {color:"#185FA5",title:"Shapiro & Teukolsky — Black Holes, White Dwarfs, and Neutron Stars",author:"Shapiro & Teukolsky",note:"Essential for compact objects and high-energy astrophysics."},
+  {color:"#3B6D11",title:"Longair — High Energy Astrophysics (3rd ed.)",author:"Malcolm Longair",note:"Broad and authoritative coverage of high-energy phenomena."},
+  {color:"#993C1D",title:"Mo, van den Bosch & White — Galaxy Formation and Evolution",author:"Mo, van den Bosch & White",note:"The most complete modern text on galaxy formation."},
+  {color:"#3C3489",title:"Griffiths — Introduction to Quantum Mechanics (3rd ed.)",author:"David Griffiths",note:"The universal bridge from undergraduate to graduate QM."},
+  {color:"#085041",title:"Draine — Physics of the Interstellar and Intergalactic Medium",author:"Bruce Draine",note:"Comprehensive modern ISM reference."},
+  {color:"#0F6E56",title:"Murray & Dermott — Solar System Dynamics",author:"Murray & Dermott",note:"Definitive reference for orbital mechanics and celestial dynamics."},
+  {color:"#854F0B",title:"Dodelson & Schmidt — Modern Cosmology (2nd ed.)",author:"Dodelson & Schmidt",note:"Advanced CMB and structure formation treatment."},
+  {color:"#5F5E5A",title:"Perryman — The Exoplanet Handbook (2nd ed.)",author:"Michael Perryman",note:"The complete exoplanet detection and characterisation reference."},
+  {color:"#A32D2D",title:"Maggiore — Gravitational Waves Vol. 1 & 2",author:"Michele Maggiore",note:"Definitive text on GW theory, sources, and detection."},
+  {color:"#3B8BD4",title:"Arfken, Weber & Harris — Mathematical Methods for Physicists",author:"Arfken, Weber & Harris",note:"The essential mathematical reference for physicists and astrophysicists."},
+  {color:"#639922",title:"Sakurai & Napolitano — Modern Quantum Mechanics",author:"Sakurai & Napolitano",note:"Standard graduate-level quantum mechanics text."},
+  {color:"#D4537E",title:"de Pater & Lissauer — Planetary Sciences (2nd ed.)",author:"de Pater & Lissauer",note:"The standard planetary science graduate text."},
+  {color:"#378ADD",title:"Prialnik — Theory of Stellar Structure and Evolution",author:"Dina Prialnik",note:"Concise and pedagogically excellent stellar physics text."},
+];
+
+const iconMap = { yt: 'YT', book: '📖', web: '🌐', course: '🎓' };
+const classMap = { yt: 'ri-yt', book: 'ri-book', web: 'ri-web', course: 'ri-course' };
+
+let activeFilter = 'all';
+
+function renderChapters(query = '') {
+  const q = query.toLowerCase();
+  const container = document.getElementById('chapters');
+  const noResults = document.getElementById('no-results');
+  container.innerHTML = '';
+  let count = 0;
+
+  data.forEach(ch => {
+    const matchBadge = activeFilter === 'all' || ch.badge === activeFilter;
+    const matchQuery = !q ||
+      ch.title.toLowerCase().includes(q) ||
+      ch.desc.toLowerCase().includes(q) ||
+      ch.sections.some(s =>
+        s.name.toLowerCase().includes(q) ||
+        s.subs.some(sub => sub.toLowerCase().includes(q))
+      ) ||
+      ch.resources.some(r => r.text.toLowerCase().includes(q));
+
+    if (!matchBadge || !matchQuery) return;
+    count++;
+
+    const div = document.createElement('div');
+    div.className = 'chapter';
+    div.innerHTML = `
+      <div class="chapter-header" onclick="toggleCh(this)">
+        <span class="ch-num">${ch.num}</span>
+        <div class="ch-title">
+          <h2>${ch.title}</h2>
+          <p>${ch.desc}</p>
+        </div>
+        <span class="ch-badge badge-${ch.badge}">${ch.badgeLabel}</span>
+        <span class="ch-arrow">▼</span>
+      </div>
+      <div class="chapter-body">
+        ${ch.sections.map((s, i) => `
+          ${i > 0 ? '<div class="divider"></div>' : ''}
+          <div class="section">
+            <h3>${s.name}</h3>
+            <div class="subtopics">
+              ${s.subs.map(sub => `<span class="sub" data-tip="${(tipDesc[sub]||'').replace(/"/g,'&quot;')}">${sub}</span>`).join('')}
+            </div>
+          </div>
+        `).join('')}
+        <div class="divider"></div>
+        <div class="resources">
+          <div class="res-label">Free resources</div>
+          <div class="res-list">
+            ${ch.resources.map(r => `
+              <div class="res-item">
+                <span class="res-icon ${classMap[r.type]}">${iconMap[r.type]}</span>
+                <span class="res-text">${r.text}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>`;
+    container.appendChild(div);
+  });
+
+  noResults.classList.toggle('hidden', count > 0);
+}
+
+function renderBooks() {
+  document.getElementById('books-body').innerHTML = books.map(b => `
+    <div class="book-item">
+      <div class="book-spine" style="background:${b.color}"></div>
+      <div class="book-info">
+        <div class="book-title">${b.title}</div>
+        <div class="book-author">${b.author}</div>
+        <div class="book-note">${b.note}</div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleCh(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.ch-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+function filterBadge(badge, btn) {
+  activeFilter = badge;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderChapters(document.getElementById('search').value);
+}
+
+function filterAll(q) { renderChapters(q); }
+
+// ── Tooltip descriptions ──────────────────────────────────────────────────────
+const tipDesc = {
+  // Ch 01 — Classical mechanics & SR
+  "Newton's laws": "Three fundamental rules relating force, mass, and acceleration that govern all macroscopic motion.",
+  "Conservation of energy & momentum": "Total energy and momentum of an isolated system remain constant — cornerstones of all physics.",
+  "Rotational dynamics & angular momentum": "Extension of Newton's laws to rotating bodies; angular momentum is conserved in the absence of torques.",
+  "Gravitational potential & orbits": "The potential energy field of gravity that determines the shape and speed of planetary and stellar orbits.",
+  "Tidal forces": "Differential gravitational pull across an extended body, responsible for ocean tides and orbital circularisation.",
+  "N-body problem & chaos": "The general impossibility of exact analytical solutions for three or more gravitationally interacting bodies; small changes lead to wildly different outcomes.",
+  "Principle of least action": "Nature evolves systems along paths that extremise the action integral — the deepest variational principle in physics.",
+  "Euler-Lagrange equations": "Differential equations derived from the action principle that yield the equations of motion for any mechanical system.",
+  "Phase space & Liouville's theorem": "The 2N-dimensional space of positions and momenta; Liouville's theorem states its volume is conserved under Hamiltonian flow.",
+  "Poisson brackets": "An algebraic structure on phase space that encodes the equations of motion and bridges classical to quantum mechanics.",
+  "Integrable systems": "Systems with as many conserved quantities as degrees of freedom — exactly solvable and non-chaotic.",
+  "Postulates & Lorentz transformations": "Einstein's two postulates (constant c, same physics in all inertial frames) and the coordinate transformations that follow.",
+  "4-vectors & spacetime interval": "Relativistic 4-component vectors whose invariant 'length' is the spacetime interval, preserved by all Lorentz boosts.",
+  "Relativistic energy-momentum": "The famous E²=(pc)²+(mc²)²; energy and momentum unify into a single 4-vector.",
+  "Doppler effect & aberration": "Relativistic shifts in frequency and direction of light due to relative motion between source and observer.",
+  "Relativistic dynamics": "How Newton's second law is modified at velocities approaching c; mass effectively increases with speed.",
+  "Minkowski diagrams": "Spacetime diagrams where time and space axes are drawn together, making simultaneity, causality, and Lorentz boosts visual.",
+
+  // Ch 02 — EM & plasma
+  "Maxwell's equations in vacuum & matter": "Four compact equations that completely describe how electric and magnetic fields are created and interact.",
+  "Electromagnetic waves": "Self-propagating oscillations of E and B fields — light, radio, X-rays all follow from Maxwell's equations.",
+  "Poynting vector & radiation pressure": "The Poynting vector describes energy flow in EM fields; radiation pressure is the momentum carried by photons.",
+  "Multipole radiation": "EM radiation emitted by oscillating charge distributions, decomposed into dipole, quadrupole, etc. contributions.",
+  "Liénard-Wiechert potentials": "The exact retarded potentials produced by a moving point charge — foundation for synchrotron and bremsstrahlung theory.",
+  "Synchrotron & bremsstrahlung radiation": "Synchrotron: radiation from relativistic electrons curving in B-fields. Bremsstrahlung: radiation from decelerating charged particles.",
+  "Debye shielding & plasma parameter": "Charged particles in a plasma rearrange to screen electric fields on scales below the Debye length.",
+  "Single-particle motion": "Trajectories of individual charges in electric and magnetic fields — gyration, drifts, and magnetic mirroring.",
+  "MHD equations": "Magnetohydrodynamics treats plasma as a conducting fluid coupled to magnetic fields — governs stars and accretion disks.",
+  "Alfvén waves": "Transverse waves that propagate along magnetic field lines in a plasma, carrying magnetic tension.",
+  "Magnetic reconnection": "The topological rearrangement of magnetic field lines releasing stored energy — key in solar flares and magnetospheres.",
+  "Solar wind & heliosphere": "The continuous supersonic outflow of plasma from the Sun that fills and shapes the heliosphere.",
+  "Blackbody radiation & Planck function": "The spectral energy distribution of radiation in thermal equilibrium — the starting point for stellar atmosphere theory.",
+  "Thermal bremsstrahlung": "Continuum X-ray emission from hot ionised plasma produced by electron–ion encounters.",
+  "Inverse Compton scattering": "Low-energy photons gain energy by scattering off high-energy electrons — important in AGN jets and galaxy clusters.",
+  "Pair production & annihilation": "High-energy photons can create electron-positron pairs (and vice versa); dominates in extreme astrophysical environments.",
+  "Polarisation of radiation": "The orientation of the EM wave's electric field vector, carrying information about magnetic fields and scattering geometry.",
+
+  // Ch 03 — Maths
+  "Vector calculus (div, grad, curl, Stokes)": "The mathematical language of fields in 3D space — essential for electromagnetism, fluid dynamics, and GR.",
+  "Linear ODEs & PDEs": "Differential equations governing physical fields; linearity allows superposition of solutions.",
+  "Fourier & Laplace transforms": "Decompose functions into frequency components — essential for signal processing, power spectra, and solving PDEs.",
+  "Eigenvalue problems": "Finding special vectors and scalars of linear operators — central to quantum mechanics and normal mode analysis.",
+  "Tensors & index notation": "Compact notation for objects with multiple indices that transform covariantly — the language of GR.",
+  "Green's functions": "The impulse-response solution to a linear operator equation, used to solve inhomogeneous PDEs.",
+  "Probability distributions (Gaussian, Poisson, Binomial)": "Mathematical descriptions of random outcomes — Gaussian for measurement errors, Poisson for photon counts.",
+  "Bayesian inference & Bayes' theorem": "Updating probability beliefs with new data; the standard framework for parameter estimation in astrophysics.",
+  "Maximum likelihood estimation": "Finding the parameter values that make the observed data most probable under your model.",
+  "Hypothesis testing & p-values": "Statistical tools for deciding whether data are consistent with a null hypothesis.",
+  "Monte Carlo methods": "Using random sampling to estimate integrals or simulate stochastic processes.",
+  "Markov Chain Monte Carlo (MCMC)": "Sampling from high-dimensional posterior distributions using random walks — ubiquitous in modern astro data analysis.",
+  "Fisher information & Cramér-Rao bound": "The fundamental limit on how precisely any unbiased estimator can measure a parameter from data.",
+  "Finite difference & finite element methods": "Discretising differential equations on a grid to solve them numerically.",
+  "N-body integrators (Verlet, RK4, symplectic)": "Algorithms for numerically evolving gravitational systems while conserving energy accurately.",
+  "Smoothed Particle Hydrodynamics (SPH)": "A mesh-free fluid simulation method where particles carry fluid properties — used in galaxy formation codes.",
+  "Adaptive mesh refinement (AMR)": "Automatically increasing spatial resolution only where needed in a simulation — balances accuracy and cost.",
+  "Fourier-based solvers": "Using the convolution theorem to solve PDEs efficiently via FFT — essential in cosmological simulations.",
+  "Machine learning in astrophysics (CNNs, GPs, normalising flows)": "Modern statistical tools applied to classification, regression, and density estimation on large astronomical datasets.",
+  "Contour integration": "Evaluating real integrals by extending them into the complex plane and using residue theory.",
+  "Residue theorem": "A powerful result in complex analysis stating a contour integral equals 2πi times the sum of residues inside.",
+  "Legendre polynomials & spherical harmonics": "Orthogonal functions on a sphere used to expand any field in angular multipoles — fundamental for CMB analysis.",
+  "Bessel functions": "Solutions to the Bessel equation arising in cylindrical geometries — appear in optics, wave equations, and disk physics.",
+  "Hypergeometric functions": "A broad family of special functions that are solutions to many differential equations in mathematical physics.",
+
+  // Ch 04 — Thermo & stat mech
+  "Laws of thermodynamics": "Four laws governing heat, work, temperature, and entropy — the macroscopic rules for energy exchange.",
+  "Carnot cycle & entropy": "The ideally efficient heat engine and the definition of entropy as a state function.",
+  "Thermodynamic potentials (Helmholtz, Gibbs)": "Energy functions suited to different experimental constraints; their minima determine equilibrium.",
+  "Phase transitions & Clausius-Clapeyron": "How matter changes state and how the phase boundary shifts with pressure and temperature.",
+  "Equation of state": "A relation between pressure, density, and temperature that closes the fluid equations — crucial in stellar interiors.",
+  "Microcanonical, canonical & grand canonical ensembles": "Three frameworks for statistical mechanics depending on what is held fixed — energy, temperature, or chemical potential.",
+  "Partition functions": "The central object of statistical mechanics — all thermodynamic quantities follow from its derivatives.",
+  "Fermi-Dirac & Bose-Einstein statistics": "Quantum statistics for half-integer-spin fermions (electrons, neutrons) and integer-spin bosons (photons).",
+  "Bose-Einstein condensation": "Below a critical temperature, bosons macroscopically occupy the ground state — relevant to superfluids and neutron star cores.",
+  "Degenerate electron gas": "Electrons obeying Fermi-Dirac statistics at high density, providing pressure that supports white dwarfs against collapse.",
+  "Saha equation & ionisation equilibrium": "Determines the ionisation state of a gas in thermal equilibrium — fundamental for stellar atmosphere modelling.",
+  "Planck distribution derivation": "Bose-Einstein statistics applied to photons yields the Planck function for blackbody radiation.",
+  "Stefan-Boltzmann law": "Total blackbody luminosity scales as T⁴ — directly used to infer stellar radii from luminosity and temperature.",
+  "Wien's displacement law": "The peak wavelength of a blackbody shifts as 1/T — used to estimate stellar surface temperatures from colour.",
+  "Radiation entropy": "The entropy carried by a photon gas, important in the early universe's thermodynamic history.",
+  "Photon gas": "A gas of massless bosons in thermal equilibrium, whose pressure is one-third of energy density.",
+
+  // Ch 05 — QM
+  "Wave-particle duality & de Broglie": "Particles have an associated wavelength λ=h/p — the foundation of quantum mechanics.",
+  "Schrödinger equation": "The fundamental wave equation of quantum mechanics governing how quantum states evolve in time.",
+  "Operators, observables & Heisenberg uncertainty": "Physical quantities are represented by operators; conjugate observables like x and p satisfy ΔxΔp≥ℏ/2.",
+  "Hilbert space & Dirac notation": "The abstract vector space of quantum states and the bra-ket notation that makes calculations clean.",
+  "Measurement & Born rule": "The probability of measuring a given eigenvalue is the squared magnitude of the projection of the state onto that eigenstate.",
+  "Infinite square well & harmonic oscillator": "Two exactly solvable QM systems that illustrate energy quantisation and build intuition for more complex problems.",
+  "Hydrogen atom & hydrogen-like ions": "Exact solution yielding the familiar n,l,m quantum numbers and the energy levels observed in stellar spectra.",
+  "Spin and Pauli matrices": "Intrinsic angular momentum of particles; the Pauli matrices are the generators of spin-1/2 rotations.",
+  "Angular momentum addition (Clebsch-Gordan)": "Rules for combining angular momenta of two quantum systems — essential for multi-electron atoms and spectroscopy.",
+  "Time-independent perturbation theory": "Systematic corrections to energy levels and wavefunctions when a small term is added to the Hamiltonian.",
+  "Time-dependent perturbation theory": "How a time-varying perturbation drives transitions between quantum states.",
+  "Fermi's Golden Rule": "Transition rate between quantum states induced by a perturbation, proportional to the density of final states.",
+  "Fine & hyperfine structure": "Small corrections to hydrogen energy levels from spin-orbit coupling and nuclear-spin interactions — seen in 21 cm emission.",
+  "Zeeman & Stark effects": "Splitting of atomic energy levels in external magnetic (Zeeman) or electric (Stark) fields — used as diagnostic tools.",
+  "Selection rules & atomic transitions": "Rules from conservation laws and symmetry that determine which quantum transitions are allowed and which are forbidden.",
+  "Identical particles & exchange symmetry": "Quantum particles are fundamentally indistinguishable; bosons have symmetric and fermions have antisymmetric wavefunctions.",
+  "Second quantisation basics": "Rewriting QM in terms of creation and annihilation operators — the language of quantum field theory.",
+  "WKB approximation": "A semiclassical approximation valid when the wavelength varies slowly — used for tunnelling and turning-point problems.",
+  "Tunnelling & alpha decay": "Quantum mechanical penetration of classically forbidden potential barriers — explains radioactive alpha decay.",
+
+  // Ch 06 — GR
+  "Manifolds & tangent spaces": "The mathematical framework for curved spacetime: smooth spaces locally resembling flat Minkowski space.",
+  "Metric tensor & line element": "The metric encodes distances and angles in curved spacetime — the fundamental dynamical object in GR.",
+  "Covariant derivatives & Christoffel symbols": "Derivatives that account for the curvature of spacetime; the Christoffel symbols encode how basis vectors change.",
+  "Riemann, Ricci & Einstein tensors": "Tensors built from the metric that quantify spacetime curvature in different ways — central to GR.",
+  "Geodesics": "The straightest possible paths in curved spacetime — freely falling particles and photons follow geodesics.",
+  "Stress-energy tensor": "The source of spacetime curvature — encodes energy density, momentum flux, and stresses of matter and radiation.",
+  "Einstein equations with cosmological constant": "The field equations relating spacetime curvature to the stress-energy content, with Λ representing dark energy.",
+  "Linearised GR & gravitational waves": "GR expanded to first order around flat spacetime, predicting gravitational waves as ripples in the metric.",
+  "Schwarzschild solution": "The exact spherically symmetric vacuum solution — describes spacetime outside any non-rotating massive body.",
+  "Birkhoff's theorem": "The Schwarzschild solution is the unique spherically symmetric vacuum solution — the gravitational analogue of Gauss's law.",
+  "Schwarzschild black hole & horizon": "The event horizon at r=2GM/c² marks the point of no return for light and matter.",
+  "Kerr & Kerr-Newman solutions": "Exact GR solutions for rotating (and charged) black holes — more realistic than Schwarzschild.",
+  "Penrose diagrams": "Conformal spacetime diagrams that compactify infinity, making causal structure of black holes and cosmologies visual.",
+  "Hawking radiation (basics)": "Quantum field theory in curved spacetime predicts that black holes slowly radiate thermally — with temperature T∝1/M.",
+  "No-hair theorem": "A black hole is completely characterised by just three quantities: mass, charge, and angular momentum.",
+  "Black hole thermodynamics": "Formal analogy between black hole mechanics and thermodynamics — entropy proportional to horizon area.",
+  "Gravitational lensing": "Mass curves spacetime and deflects photon paths — produces arcs, rings, and magnification of distant sources.",
+  "Frame dragging & Lense-Thirring": "A rotating mass drags spacetime with it — detected by Gravity Probe B and relevant to accretion disk precession.",
+  "Perihelion precession": "Mercury's orbit precesses by 43 arcsec/century beyond Newtonian predictions — one of the classic GR tests.",
+  "Gravitational redshift": "Photons lose energy climbing out of a gravitational well — measured in white dwarf spectra and GPS corrections.",
+  "Tests of GR (Cassini, VLBI, PSR 1913+16)": "Precision experimental confirmations of GR via time delay, light deflection, and pulsar orbital decay.",
+  "Gravitational wave generation (quadrupole formula)": "GW power radiated by an accelerating mass distribution scales with the second time-derivative of the quadrupole moment.",
+
+  // Ch 07 — Observations
+  "Reflecting & refracting telescopes": "The two main telescope designs using mirrors and lenses respectively; most modern telescopes are reflectors.",
+  "Focal length, f-ratio & plate scale": "Key optical parameters defining image scale, field of view, and detector matching for a telescope.",
+  "Adaptive & active optics": "Real-time correction of atmospheric turbulence using deformable mirrors to achieve diffraction-limited imaging.",
+  "Interferometry (VLBI, optical)": "Combining signals from widely separated telescopes to achieve angular resolution far beyond any single dish.",
+  "Space telescopes (HST, JWST, Chandra, XMM, Fermi)": "Observatories above Earth's atmosphere enabling UV, IR, X-ray, and gamma-ray astronomy otherwise blocked by the atmosphere.",
+  "CCDs & CMOS sensors": "Semiconductor detectors that convert photons to electrical charge — the workhorse of modern optical and near-IR astronomy.",
+  "Photomultiplier tubes": "High-sensitivity vacuum tube detectors for single photon counting — used in neutrino and gamma-ray detectors.",
+  "Bolometers & calorimeters": "Detectors that measure heat deposited by photons — essential for millimetre and sub-mm astronomy.",
+  "Radio receivers & heterodyne detection": "Amplifiers and mixers that down-convert radio signals to measurable frequencies — used in all radio telescopes.",
+  "X-ray & gamma-ray detectors": "Specialised detectors (grazing-incidence mirrors, coded aperture masks) needed for high-energy photons.",
+  "Magnitude systems (apparent, absolute, AB)": "Logarithmic flux scales for stellar brightness; absolute magnitude removes the effect of distance.",
+  "Colour indices & filter systems (UBVRI, Sloan)": "Standardised photometric bands used to measure stellar temperatures, distances, and classify objects.",
+  "Point spread function (PSF)": "The response of an optical system to a point source — determines how sharp images can be.",
+  "Astrometric reduction": "Converting pixel coordinates to sky coordinates using reference stars — the basis of all positional measurements.",
+  "Parallax & proper motion": "Stellar distances via annual parallax and transverse velocities from proper motion — the distance ladder foundation.",
+  "Spectrograph design & resolving power": "The ability of a spectrograph to separate nearby wavelengths, R=λ/Δλ, determines Doppler precision.",
+  "Echelle spectrographs": "High-resolution spectrographs using a coarsely blazed grating in high order to spread the spectrum across a 2D detector.",
+  "Line identification & Doppler shifts": "Matching observed spectral lines to laboratory wavelengths and measuring radial velocities from their shifts.",
+  "Radial velocity measurement": "The precision measurement of Doppler shifts — used to find exoplanets and measure binary star orbits.",
+  "Equivalent width & curve of growth": "Measures of spectral line strength used to determine elemental abundances in stellar atmospheres.",
+  "Gravitational wave detectors (LIGO/Virgo)": "Kilometre-scale laser interferometers sensitive to spacetime strains of ~10⁻²¹ produced by merging compact objects.",
+  "Neutrino observatories (IceCube, SNO)": "Detectors buried in ice or water that observe neutrinos from supernovae, the Sun, and cosmic accelerators.",
+  "Ultra-high energy cosmic rays": "Protons and nuclei with energies exceeding 10¹⁸ eV whose origins and acceleration mechanisms remain open questions.",
+  "Gamma-ray bursts as multi-messenger events": "The most luminous explosions in the universe, observable in GW, EM, and potentially neutrino channels.",
+
+  // Ch 08 — Stellar structure & evolution
+  "Hydrostatic equilibrium": "The balance between inward gravity and outward pressure gradient that maintains a star's stable structure.",
+  "Mass continuity": "The differential equation relating the mass enclosed within a given radius to the local density.",
+  "Energy transport (radiative, convective)": "Heat flows outward through stars either by radiative diffusion or by convective overturning of hot blobs.",
+  "Energy generation": "Nuclear burning rate per unit mass as a function of temperature and density — the stellar power source.",
+  "Equation of state (ideal gas, degenerate)": "Relates pressure, density, and temperature in stellar material — transitions from ideal gas to degenerate in compact objects.",
+  "Polytropes & Lane-Emden equation": "Simple stellar structure models where pressure is a power law in density — exact solutions for idealised stars.",
+  "Proton-proton chain": "The dominant hydrogen-burning reaction in solar-mass stars, fusing four protons into helium and releasing energy.",
+  "CNO cycle": "Carbon-nitrogen-oxygen catalysed hydrogen fusion that dominates in stars more massive than ~1.3 solar masses.",
+  "Triple-alpha process": "Helium burning reaction where three helium nuclei fuse to form carbon — powers red giant cores.",
+  "s- & r-process nucleosynthesis": "Slow and rapid neutron-capture processes that build heavy elements in AGB stars and neutron star mergers.",
+  "Electron capture & beta decay in stars": "Weak interactions that change proton-to-neutron ratios in dense stellar cores, critical in collapse and neutronisation.",
+  "Neutrino production": "Neutrinos carry away most of the energy in a core-collapse supernova and provide a direct window into stellar interiors.",
+  "Pre-main-sequence (Hayashi track)": "The nearly vertical evolutionary track of a contracting protostar on the HR diagram before hydrogen ignition.",
+  "Zero-age main sequence (ZAMS)": "The locus of stars that have just begun hydrogen burning — the initial condition for main-sequence evolution.",
+  "Main sequence timescales": "A star's hydrogen-burning lifetime scales roughly as M⁻²·⁵ — massive stars live millions, low-mass stars trillions of years.",
+  "Red giant branch": "After core hydrogen exhaustion, the star expands and cools, ascending the red giant branch as the core contracts.",
+  "Horizontal branch & AGB": "Helium-burning phase (HB) followed by the thermally pulsing asymptotic giant branch (AGB) with double-shell burning.",
+  "Planetary nebulae": "Shells of ionised gas ejected from AGB stars illuminated by the hot remnant white dwarf.",
+  "White dwarf cooling": "After ejecting the envelope, the degenerate carbon-oxygen core slowly cools over billions of years.",
+  "Chandrasekhar mass limit": "The maximum white dwarf mass (~1.44 M☉) supported by electron degeneracy pressure — above this, collapse ensues.",
+  "Wolf-Rayet stars & mass loss": "Evolved massive stars with strong stellar winds that strip the outer envelope, exposing the hot helium core.",
+  "Core collapse supernovae": "The violent death of massive stars when the iron core collapses to a neutron star, releasing ~10⁴⁴ J.",
+  "Type Ia supernovae": "Thermonuclear explosions of white dwarfs near the Chandrasekhar limit — used as standard candles for cosmology.",
+  "Neutron star formation": "When the collapsing core reaches nuclear density, neutron degeneracy pressure halts collapse and a neutron star is born.",
+  "Black hole formation channels": "Sufficiently massive cores that cannot be halted by neutron degeneracy collapse to black holes directly or after fallback.",
+  "Pair-instability supernovae": "Very massive stars (>130 M☉) create electron-positron pairs that reduce pressure, leading to a runaway thermonuclear explosion.",
+  "LTE & non-LTE": "Local thermodynamic equilibrium simplifies atmosphere modelling; departures from LTE require full radiative transfer treatment.",
+  "Opacity sources": "Free-free, bound-free, bound-bound, and electron scattering absorb and scatter radiation, regulating energy transport.",
+  "Line formation & radiative transfer": "How photons propagate through an atmosphere with absorption and emission, producing observed spectral lines.",
+  "Model atmospheres (Kurucz, MARCS, PHOENIX)": "Numerical solutions to the stellar atmosphere structure used to compute theoretical spectra for any Teff, log g, [Fe/H].",
+  "Stellar winds": "Mass outflows driven by radiation pressure, thermal pressure, or magnetic forces — critical for stellar mass loss rates.",
+
+  // Ch 09 — Solar System
+  "Solar nebula theory": "The Sun and planets formed from a collapsing rotating molecular cloud that flattened into a disk.",
+  "Disk instability vs. core accretion": "Two competing models for giant planet formation: gravitational fragmentation of the disk vs. slow rocky core growth.",
+  "Planetesimal formation": "The poorly understood process of cm-to-km growth, overcoming the metre-size barrier in the protoplanetary disk.",
+  "Grand Tack & Nice model": "Dynamical models explaining Jupiter and Saturn's early inward-then-outward migration and the later orbital instability.",
+  "Late Heavy Bombardment": "A proposed spike in impact rates ~3.9 Gyr ago, possibly triggered by giant planet orbital migration.",
+  "Minimum mass solar nebula (MMSN)": "The minimum disk mass needed to form the observed planets by spreading their current compositions back out.",
+  "Planetary differentiation": "Separation of a planet into layers by density — dense iron sinks to form a core, lighter silicates form a mantle.",
+  "Heat sources (accretion, radioactive decay)": "Accretional heating and decay of short-lived radionuclides (²⁶Al) drove early melting and differentiation.",
+  "Seismology & interior structure": "Seismic waves probe the internal layering of planets — gives density and elastic property profiles.",
+  "Volcanism & tectonics": "Heat transport through planetary interiors drives surface volcanism and, on Earth uniquely, plate tectonics.",
+  "Impact cratering": "The dominant geological process on most Solar System bodies, recording the bombardment history of the inner system.",
+  "Geomorphology": "The study of surface landforms and their formation by erosion, volcanism, tectonics, and impacts.",
+  "Hydrostatic equilibrium & scale height": "An atmosphere in hydrostatic balance has an exponential pressure profile with scale height H=kT/mg.",
+  "Atmospheric escape (Jeans, hydrodynamic)": "Thermal evaporation of light atoms from the top of an atmosphere — explains why Mars lost its atmosphere.",
+  "Greenhouse effect": "Atmospheric gases transparent to visible light but opaque to infrared trap heat — warms Venus, Earth, and Titan.",
+  "Photochemistry & UV dissociation": "UV radiation from the Sun drives chemical reactions in planetary atmospheres, breaking molecules apart.",
+  "Comparative planetology (Venus, Mars, Titan)": "Studying multiple planets side by side reveals which processes are universal and which are planet-specific.",
+  "Giant planet atmospheres": "Hydrogen-helium dominated with complex banding, storms, and deep interiors of metallic hydrogen.",
+  "Asteroid belt & Kirkwood gaps": "Resonances with Jupiter clear gaps at specific semi-major axes in the main asteroid belt.",
+  "Kuiper Belt & scattered disk": "Trans-Neptunian reservoirs of icy bodies from which short-period comets originate.",
+  "Oort Cloud": "A vast spherical cloud of comets at 10³–10⁵ AU, perturbed by passing stars into the inner Solar System.",
+  "Cometary physics (coma, tail, nucleus)": "Sublimation of ices creates a coma and ion/dust tails that always point away from the Sun.",
+  "Trans-Neptunian objects (TNOs)": "Icy bodies beyond Neptune including Pluto, Eris, and Sedna — tracers of early Solar System dynamics.",
+  "Meteor showers": "Annual displays when Earth passes through a cometary debris trail, burning up particles in the upper atmosphere.",
+  "Kepler's laws": "Three empirical laws describing planetary orbits: ellipses, equal areas in equal times, and P²∝a³.",
+  "Orbital elements & Keplerian orbits": "Six numbers (a, e, i, Ω, ω, M) that completely specify an orbit in the two-body problem.",
+  "Resonances & chaos": "Commensurable orbital periods lead to repeated perturbations that can be stabilising or destabilising.",
+  "Tisserand parameter": "A nearly conserved quantity for a small body in the restricted three-body problem — used to classify comets vs. asteroids.",
+  "Kozai-Lidov mechanism": "Secular oscillations of inclination and eccentricity driven by a distant third body — causes orbit flipping.",
+  "Lagrange points & Trojan asteroids": "Five equilibrium points in the restricted three-body problem; L4 and L5 host Jupiter's Trojan asteroid swarms.",
+
+  // Ch 10 — ISM & star formation
+  "Cold neutral medium (CNM)": "Dense atomic hydrogen clouds at ~80 K detectable in 21 cm absorption — the sites of future star formation.",
+  "Warm neutral medium (WNM)": "Diffuse atomic hydrogen at ~8000 K filling much of the galactic disk volume.",
+  "Warm ionised medium (WIM)": "Diffuse ionised gas maintained by leaked UV photons from OB stars — detected via Hα emission.",
+  "Hot ionised medium (HIM)": "Gas at ~10⁶ K filling galactic chimneys and halos, heated by supernova remnants.",
+  "Molecular clouds": "Dense, cold (10-30 K) clouds of H₂ and CO where star formation occurs — detected via CO rotational lines.",
+  "H II regions & Strömgren spheres": "Ionised bubbles around hot OB stars where UV photons keep hydrogen photoionised, bounded by the Strömgren radius.",
+  "21 cm hydrogen line": "The hyperfine spin-flip transition of neutral hydrogen at 1420 MHz — maps the distribution and kinematics of atomic gas.",
+  "Molecular line emission (CO, H₂)": "CO rotational lines trace molecular gas mass; H₂ is the most abundant but requires IR/UV to detect directly.",
+  "Dust emission & extinction": "Interstellar dust grains absorb and scatter UV/optical light and re-emit thermally in the far-infrared.",
+  "Polycyclic aromatic hydrocarbons (PAHs)": "Large carbon molecules excited by UV photons that emit characteristic mid-IR bands — important ISM energy tracers.",
+  "Synchrotron emission": "Radiation from relativistic electrons spiralling in the Galactic magnetic field — dominates radio continuum emission.",
+  "Free-free emission": "Thermal radio continuum emission from ionised gas — used to measure star formation rates.",
+  "Jeans instability & Jeans mass": "A gas cloud collapses if its mass exceeds the Jeans mass, where gravity overcomes thermal pressure.",
+  "Magnetic support & ambipolar diffusion": "Magnetic fields thread molecular clouds and provide pressure support; ambipolar diffusion allows neutrals to drift inward.",
+  "Protostellar collapse": "The inside-out collapse of a molecular cloud core, forming a protostar surrounded by an infalling envelope.",
+  "Protoplanetary disk formation": "Conservation of angular momentum during collapse creates a rotating disk around the protostar.",
+  "Bipolar outflows & jets": "Collimated outflows driven by magnetic launching from the inner disk — clear the envelope and regulate star formation.",
+  "Initial mass function (IMF)": "The distribution of stellar masses at birth — approximately a Kroupa or Chabrier power law, with few massive stars.",
+  "OB associations & triggered star formation": "Loose groups of massive young stars whose feedback (HII regions, winds) can trigger the next generation of star formation.",
+  "Stellar winds & HII region expansion": "Massive star feedback injects energy and momentum into the ISM, driving expanding shells and bubbles.",
+  "Supernova remnants & blast waves": "Expanding shells of shocked ISM gas following supernova explosions — heat the ISM and accelerate cosmic rays.",
+  "Galactic fountains": "Hot gas blown out of the disk by supernovae cools in the halo and rains back down, cycling material.",
+  "Chemical enrichment": "Stars process hydrogen into heavier elements and return them to the ISM via winds and supernovae.",
+  "Dust lifecycle": "Dust grains form in stellar outflows, are destroyed by shocks and UV, and reform in dense clouds — a complex cycle.",
+
+  // Ch 11 — Galaxies
+  "Milky Way components (disk, bulge, bar, halo)": "Our galaxy has a thin+thick disk, central bar/bulge, stellar halo, and dark matter halo with distinct populations.",
+  "Stellar populations (Pop I, II, III)": "Pop I: metal-rich disk stars. Pop II: old metal-poor halo stars. Pop III: the first metal-free stars (unobserved).",
+  "Spiral arm theories (density wave, dynamic)": "Arms may be quasi-stationary density waves or dynamic features driven by swing amplification and feedback.",
+  "Galactic centre & Sgr A*": "The Milky Way's central 4×10⁶ M☉ black hole — confirmed by stellar orbits monitored over decades.",
+  "Rotation curve & dark matter evidence": "Galaxy rotation curves stay flat at large radii, requiring far more mass than visible stars and gas — dark matter.",
+  "Collisionless Boltzmann equation": "The kinetic equation for a collisionless stellar system — the fundamental equation of galactic dynamics.",
+  "Jeans equations": "Moment equations of the CBE relating velocity dispersions to the gravitational potential — used to weigh galaxies.",
+  "Orbits in axisymmetric potentials": "Stellar orbits in realistic galactic potentials conserve energy and angular momentum but are generally rosette-shaped.",
+  "Epicyclic approximation": "Small oscillations of a star about a circular orbit in the disk — gives the epicyclic frequency κ.",
+  "Violent relaxation & phase mixing": "Rapid potential changes during galaxy formation mix stellar orbits quickly into a quasi-equilibrium state.",
+  "Tidal stripping & galaxy harassment": "Gravitational tides and high-speed encounters in clusters strip stars from satellite galaxies over time.",
+  "Semi-analytic models": "Galaxy formation models that apply analytic prescriptions for gas cooling, star formation, and feedback onto merger trees.",
+  "Galaxy mergers & interactions": "Collisions between galaxies trigger starbursts, reshape morphologies, and grow supermassive black holes.",
+  "Morphological classification (Hubble sequence)": "The Hubble 'tuning fork' diagram classifying galaxies from ellipticals (E0-E7) through lenticulars to spirals and irregulars.",
+  "Lenticular & elliptical galaxies": "Early-type galaxies with little gas and dust, dominated by old stellar populations, often found in clusters.",
+  "Dwarf galaxies & satellites": "The most numerous galaxy type — low mass, low surface brightness, sensitive tracers of dark matter substructure.",
+  "Metallicity gradients": "The decrease in metal abundance from galaxy centres to outskirts — a fossil record of assembly history.",
+  "Downsizing & quenching": "Massive galaxies formed their stars earlier than low-mass galaxies; quenching halts star formation in massive systems.",
+  "Seyfert galaxies, quasars, BL Lac, blazars": "The AGN zoo: Seyferts have narrow/broad emission lines; quasars are distant luminous AGN; blazars have relativistic jets pointed at us.",
+  "Accretion disk physics": "Gas spiralling inward around a black hole releases up to ~42% of its rest mass energy as radiation.",
+  "Relativistic jets": "Highly collimated outflows of plasma at velocities approaching c, extending from pc to Mpc scales.",
+  "Unification model": "Different AGN types are the same intrinsic object viewed at different angles relative to the obscuring torus.",
+  "M-σ relation": "The tight correlation between supermassive black hole mass and host galaxy bulge velocity dispersion — evidence for co-evolution.",
+  "Feedback & co-evolution": "AGN jets and winds inject energy into the surrounding gas, regulating star formation and BH growth simultaneously.",
+  "Cluster masses & virial theorem": "Applying energy balance to cluster galaxies and gas gives total masses dominated by dark matter.",
+  "Intracluster medium (ICM)": "Hot (10⁷–10⁸ K) X-ray emitting gas filling galaxy clusters — contains more baryons than all the galaxies combined.",
+  "Sunyaev-Zel'dovich effect": "CMB photons inverse-Compton scatter off ICM electrons, producing a spectral distortion used to find and weigh clusters.",
+  "Gravitational lensing by clusters": "Massive clusters distort background galaxy images into arcs and rings, directly weighing the dark matter distribution.",
+  "Cosmic web (filaments, voids, nodes)": "The large-scale structure of the universe: galaxies live in sheets and filaments surrounding vast empty voids.",
+  "Baryon acoustic oscillations (BAO)": "A preferred clustering scale of ~150 Mpc imprinted by sound waves in the early universe — a standard ruler for cosmology.",
+
+  // Ch 12 — Cosmology
+  "Cosmological principle": "The universe is homogeneous and isotropic on large scales — the foundational assumption of modern cosmology.",
+  "Friedmann-Robertson-Walker (FRW) metric": "The exact GR metric for a homogeneous, isotropic universe, parameterised by the scale factor a(t).",
+  "Friedmann equations": "Two equations governing the evolution of the scale factor derived from Einstein's equations applied to the FRW metric.",
+  "Scale factor & Hubble law": "The scale factor a(t) describes how distances grow; its time-derivative divided by a gives the Hubble parameter H(t).",
+  "Comoving coordinates & proper distance": "Comoving coordinates factor out cosmic expansion; proper distance is the physical separation at a given moment.",
+  "Redshift-distance relations": "The observed wavelength of light is stretched by cosmic expansion: 1+z = a(today)/a(emission).",
+  "Critical density & density parameters (Ω)": "The density that gives a spatially flat universe; Ω=ρ/ρ_c determines the geometry and fate of the universe.",
+  "Dark matter evidence & candidates": "Rotation curves, lensing, BBN, and CMB all require ~27% dark matter; WIMPs, axions, and sterile neutrinos are leading candidates.",
+  "Dark energy & cosmological constant": "The ~68% energy budget driving accelerated expansion — consistent with Einstein's Λ but its physical nature is unknown.",
+  "Matter- & radiation-dominated epochs": "Early universe was radiation-dominated (ρ∝a⁻⁴); later matter-dominated (ρ∝a⁻³); now dark-energy-dominated.",
+  "Deceleration & acceleration": "The universe decelerated during matter domination; dark energy drove a transition to acceleration at z≈0.7.",
+  "Age & fate of the universe": "Current age ~13.8 Gyr; with Λ, the universe expands forever, with galaxy clusters eventually isolated islands.",
+  "Thermal history of the early universe": "A timeline from the Planck epoch through quark-hadron transition, BBN, recombination, and reionisation.",
+  "Big Bang nucleosynthesis (BBN)": "In the first three minutes, protons and neutrons fused to produce H, D, ³He, ⁴He, and ⁷Li in known proportions.",
+  "Recombination & decoupling": "At z≈1100, the universe cooled enough for electrons to combine with protons, releasing the CMB photons.",
+  "Cosmic Microwave Background (CMB)": "Relic radiation from recombination — a nearly perfect 2.725 K blackbody with tiny temperature fluctuations of ~10⁻⁵.",
+  "Neutrino decoupling": "At T≈2 MeV (t≈1 s), neutrinos stop interacting and free-stream — forming the cosmic neutrino background.",
+  "Blackbody spectrum & COBE": "COBE confirmed the CMB is a near-perfect blackbody in 1990 — a key pillar of the Big Bang model.",
+  "Temperature anisotropies": "Tiny hot and cold spots in the CMB (~10⁻⁵ K) seeded by quantum fluctuations during inflation.",
+  "Angular power spectrum & acoustic peaks": "The plot of CMB fluctuation power vs. angular scale shows characteristic peaks from pre-recombination sound waves.",
+  "Silk damping": "Small-scale CMB fluctuations are washed out by photon diffusion during recombination — sets the damping tail.",
+  "Polarisation (E- and B-modes)": "CMB polarisation encodes additional information: E-modes from density perturbations; primordial B-modes from inflation-era GWs.",
+  "CMB lensing": "Large-scale structure between us and the last scattering surface slightly distorts CMB temperature and polarisation patterns.",
+  "Horizon & flatness problems": "The classical Big Bang cannot explain why causally disconnected CMB patches have the same temperature, or why Ω≈1.",
+  "Slow-roll inflation": "A period of exponential expansion driven by a slowly rolling scalar field solves the horizon and flatness problems.",
+  "Inflaton field": "The hypothetical scalar field whose potential energy drives inflation — its nature is unknown.",
+  "Primordial power spectrum": "Inflation predicts a nearly scale-invariant spectrum of density perturbations — confirmed by CMB observations.",
+  "Gravitational waves from inflation": "Inflation also generates a background of primordial GWs imprinting B-mode polarisation in the CMB.",
+  "Eternal inflation & multiverse": "In many inflation models, inflation never globally ends — generating a vast multiverse of pocket universes.",
+  "Jeans instability in expanding universe": "In an expanding background, perturbations grow as a power law rather than exponentially — slower but still effective.",
+  "Linear perturbation theory": "The linearised equations governing how small density and velocity fluctuations evolve in the early universe.",
+  "Transfer function": "Encodes how different Fourier modes of the primordial spectrum are modified by radiation, dark matter, and baryon physics.",
+  "Harrison-Zel'dovich spectrum": "A scale-invariant primordial power spectrum P(k)∝k — predicted by inflation and confirmed by CMB measurements.",
+  "Non-linear collapse (spherical top-hat)": "Simplified model of how an overdense region collapses to form a dark matter halo — gives the δ_c threshold.",
+  "Press-Schechter formalism": "Analytic prediction for the abundance of dark matter halos as a function of mass and redshift.",
+  "N-body simulations (IllustrisTNG, EAGLE)": "Large cosmological simulations following billions of dark matter and gas particles to model galaxy formation.",
+
+  // Ch 13 — High-energy
+  "Tolman-Oppenheimer-Volkoff (TOV) equation": "The GR generalisation of hydrostatic equilibrium for neutron stars — determines their maximum mass.",
+  "Neutron star equation of state": "The pressure-density relation for ultra-dense nuclear matter — one of the great unknowns of modern physics.",
+  "Nuclear matter & quark-gluon plasma": "At extreme densities, nucleons may dissolve into free quarks — possibly forming exotic matter in NS cores.",
+  "Maximum mass & radius": "The TOV equation plus EoS sets the maximum NS mass (~2 M☉ observed) and the mass-radius relation.",
+  "Neutron star cooling": "NSs cool by neutrino emission (first ~10⁵ yr) then photon emission — sensitive to the core EoS.",
+  "Superfluidity & superconductivity in NSs": "Neutrons form a superfluid and protons a superconductor in the NS interior — affects rotation and cooling.",
+  "Pulsar timing & the pulsar equation": "Pulsars are spinning down due to magnetic dipole radiation; the pulsar equation relates P, Ṗ, and B.",
+  "Spin-down & dipole radiation": "Rotating magnetised NS loses rotational energy as magnetic dipole radiation, increasing the spin period.",
+  "Pulsar magnetosphere & pair cascade": "Intense E-fields above the polar caps accelerate particles that produce photons that pair-produce — creating the pulsar beam.",
+  "Millisecond pulsars & recycling": "Old pulsars spun back up to ms periods by accreting mass from a binary companion — the recycled pulsar scenario.",
+  "Pulsar timing arrays (PTAs) & GW background": "Networks of millisecond pulsars used as a Galactic GW detector — recently detected a nHz GW background.",
+  "Magnetars & soft gamma repeaters": "NSs with ultra-strong magnetic fields (10¹⁴–10¹⁵ G) that power X-ray and gamma-ray bursting activity.",
+  "Eddington luminosity": "The maximum luminosity at which radiation pressure balances gravity — sets the accretion rate limit for compact objects.",
+  "Bondi accretion": "Spherically symmetric accretion of ambient gas onto a compact object — relevant in isolation or in cluster ICM.",
+  "Thin disk (Shakura-Sunyaev) model": "The standard viscous accretion disk model where gas spirals inward releasing gravitational energy as blackbody radiation.",
+  "Thick disks & advection-dominated flows (ADAF)": "Low-luminosity accretion modes where energy is advected into the BH rather than radiated — explains dim galactic nuclei.",
+  "Magnetic fields in accretion": "The magnetorotational instability (MRI) drives turbulence and angular momentum transport in accretion disks.",
+  "Quasi-periodic oscillations (QPOs)": "Peaks in the X-ray power spectrum of accreting compact objects — probe strong-field GR and disk structure.",
+  "Long vs. short GRBs": "Long GRBs (>2 s) from massive star collapsar jets; short GRBs (<2 s) from NS-NS or NS-BH mergers.",
+  "Fireball model & Lorentz factor": "GRBs are powered by a relativistic fireball with Lorentz factors Γ>100, making the prompt emission non-thermal.",
+  "Afterglow physics": "Decelerating blast wave interacts with the circumburst medium producing multiwavelength afterglow emission.",
+  "Kilonova & r-process (GW170817)": "NS merger ejecta undergo rapid neutron capture, producing heavy r-process elements and an optical/IR kilonova transient.",
+  "GRB host galaxies": "Long GRBs prefer low-metallicity star-forming galaxies; short GRBs are found in both ellipticals and spirals.",
+  "Energy spectrum & composition": "Cosmic ray flux follows a power law with spectral breaks at the 'knee' and 'ankle' — composition changes across these features.",
+  "Acceleration (Fermi mechanisms)": "First-order Fermi: systematic energy gain at shocks; second-order Fermi: stochastic scattering off magnetic clouds.",
+  "Propagation in the Galaxy": "CRs scatter off magnetic field irregularities, diffusing through the Galaxy and undergoing spallation on ISM nuclei.",
+  "Ultra-high energy CRs (Auger, TA)": "CRs above 10¹⁸ eV — likely extragalactic origin; Auger and Telescope Array map their arrival directions.",
+  "Neutrino astronomy (IceCube)": "IceCube detects astrophysical neutrinos at TeV–PeV energies, probing cosmic ray accelerators.",
+  "Very-high-energy gamma rays (HESS, MAGIC, CTA)": "Imaging Atmospheric Cherenkov Telescopes detect TeV photons from supernova remnants, pulsars, and AGN.",
+
+  // Ch 14 — GW & multi-messenger
+  "Linearised GR & wave equation": "Small metric perturbations propagate as waves at the speed of light — the foundation of GW physics.",
+  "TT gauge & polarisations (h₊, h×)": "In the transverse-traceless gauge, GWs have exactly two polarisation states: plus and cross.",
+  "Quadrupole formula": "GW power ∝ third time-derivative of the mass quadrupole squared — vanishes for spherically symmetric motion.",
+  "GW energy flux & luminosity": "The energy carried by GWs per unit area per unit time — related to the strain amplitude.",
+  "Matched filtering & signal processing": "The optimal method for detecting known-waveform GW signals buried in detector noise using template banks.",
+  "Binary black hole mergers": "The dominant LIGO/Virgo source — inspiral, merger, and ringdown of two BHs produces a characteristic chirp.",
+  "Binary neutron star mergers": "NS-NS mergers produce GWs, kilonova, short GRB, and r-process nucleosynthesis — confirmed by GW170817.",
+  "BH-NS binaries": "BH merging with a NS may tidally disrupt it, potentially producing a kilonova and short GRB.",
+  "Core-collapse supernovae": "Asymmetric core collapse produces GWs from convection and proto-NS oscillations — not yet detected.",
+  "Continuous waves (rotating NSs)": "Deformed spinning NSs emit continuous nearly monochromatic GWs — not yet detected but targeted by LIGO.",
+  "Stochastic GW background": "Superposition of unresolved GW sources — from binary mergers, cosmic strings, or inflation — targeted by PTA and LISA.",
+  "Michelson interferometer principle": "Arm-length changes due to GWs are measured as phase shifts in a laser interference pattern.",
+  "Fabry-Pérot cavities & power recycling": "Optical cavities store light for many bounces, increasing effective arm length and sensitivity by orders of magnitude.",
+  "Noise sources (shot, radiation pressure, seismic)": "Three fundamental noise floors: photon shot noise, quantum radiation pressure, and seismic ground motion.",
+  "LIGO/Virgo/KAGRA": "A global network of km-scale interferometers that have detected 90+ GW events since 2015.",
+  "LISA (space-based)": "A planned 2.5 million km arm-length space interferometer targeting mHz GWs from massive BH mergers and EMRIs.",
+  "Pulsar timing arrays (NANOGrav)": "Networks of ns pulsars used to detect nHz GWs — NANOGrav reported evidence for a GW background in 2023.",
+  "GW170817 & kilonova AT2017gfo": "The first NS merger detected in GWs and light — confirmed the r-process and measured H₀ via GW standard sirens.",
+  "Electromagnetic follow-up strategies": "Rapid localisation and telescope coordination to catch the fading EM counterpart of GW events.",
+  "Hubble constant from GW standard sirens": "GW amplitude gives luminosity distance without a distance ladder — an independent measure of H₀.",
+  "IceCube neutrinos + gamma rays (TXS 0506+056)": "First multi-messenger association of a high-energy neutrino with a flaring blazar — identifies a cosmic ray source.",
+  "BOAT GRB 2022": "GRB 221009A — the 'Brightest Of All Time' gamma-ray burst detected in October 2022 at ~2 Gpc.",
+
+  // Ch 15 — Exoplanets & astrobiology
+  "Radial velocity (RV)": "Measuring the Doppler wobble of a host star induced by an orbiting planet — the first method to detect exoplanets.",
+  "Transit photometry": "Detecting the periodic dip in stellar flux as a planet crosses the stellar disk — the most prolific detection method.",
+  "Direct imaging": "Directly resolving the planet's light from its star — only possible for large, young, widely-separated planets.",
+  "Microlensing": "A foreground planet lenses the light of a background star, producing a brief characteristic brightening anomaly.",
+  "Astrometry (Gaia)": "Measuring the star's tiny wobble on the sky plane — Gaia is expected to discover thousands of planets astrometrically.",
+  "Transit timing variations (TTVs)": "Deviations from a linear transit ephemeris caused by gravitational interactions with other planets in the system.",
+  "Mass-radius relationships": "Connecting measured masses and radii to infer bulk composition — distinguishing rocky, water-world, and gas-dominated planets.",
+  "Bulk composition models": "Interior structure models that relate mass, radius, and assumed composition to understand what a planet is made of.",
+  "Transmission spectroscopy": "Light passing through a planet's atmosphere during transit carries absorption signatures of its atmospheric composition.",
+  "Emission spectroscopy & phase curves": "Measuring the planet's own thermal emission at secondary eclipse and as the planet orbits reveals temperature maps.",
+  "Atmospheric retrieval": "Bayesian inversion techniques that extract atmospheric temperature, composition, and cloud properties from spectra.",
+  "Biosignatures (O₂, O₃, CH₄, phosphine)": "Gases or combinations of gases that would be strong evidence for biological processes if detected in an exo-atmosphere.",
+  "Habitable zone (classical & extended)": "The range of orbital distances where liquid water could exist on a rocky planet's surface.",
+  "Stellar irradiation & albedo": "The balance between absorbed starlight and planetary albedo determines surface temperature and habitability.",
+  "Tidal locking": "Planets close to their stars are synchronised so the same face always points at the star — has profound climate implications.",
+  "Atmospheric stability": "Whether a planet can retain its atmosphere against escape, erosion by stellar winds, and photodissociation.",
+  "Stellar activity & UV flux": "Flares and UV radiation from the host star can strip atmospheres and affect surface chemistry on habitable zone planets.",
+  "Ocean & land distribution": "The fraction of ocean vs. land strongly affects climate stability and habitability over geological timescales.",
+  "Origin of life theories": "Abiogenesis scenarios including RNA world, hydrothermal vents, and panspermia — the transition from chemistry to biology.",
+  "Extremophiles & limits of life": "Organisms thriving at pH extremes, high radiation, high temperature, or vacuum — expand the parameter space for life.",
+  "Panspermia": "The hypothesis that life (or its precursors) can be transferred between planets via meteorites or comets.",
+  "Drake equation & Fermi paradox": "The Drake equation estimates communicating civilisation numbers; the Fermi paradox asks why we haven't detected them.",
+  "SETI & technosignatures": "Searches for radio signals, laser pulses, megastructures, or other signs of technological civilisations.",
+  "Mars & icy moon missions (Europa Clipper, Enceladus)": "The prime targets in the Solar System for life: ancient Mars habitability and subsurface oceans of Europa and Enceladus.",
+
+  // Ch 16 — Computational
+  "Tree codes & fast multipole method": "Algorithms that reduce the O(N²) gravitational N-body problem to O(N log N) by grouping distant particles.",
+  "SPH (Gadget, SWIFT)": "Smoothed Particle Hydrodynamics: a mesh-free method representing fluids as particles carrying physical properties.",
+  "AMR hydro (ENZO, FLASH, Athena++)": "Grid-based hydro codes that add resolution only where needed, efficiently handling large dynamic ranges.",
+  "MHD codes": "Codes that solve the coupled magnetohydrodynamic equations — essential for simulating jets, disks, and the ISM.",
+  "Radiative transfer (RADMC-3D, CLOUDY)": "Computing how radiation propagates through gas and dust — needed for synthetic observations and photoionisation modelling.",
+  "Cosmological simulations (IllustrisTNG, EAGLE, FIRE)": "Large-volume simulations following dark matter, gas, stars, and BHs from early times to the present.",
+  "Python ecosystem (Astropy, NumPy, SciPy)": "The standard scientific Python stack; Astropy adds astronomy-specific tools for FITS, coordinates, and cosmology.",
+  "IRAF & DS9": "Legacy astronomical image reduction system and the standard FITS image viewer used in observatories worldwide.",
+  "Aperture & PSF photometry": "Two methods of extracting stellar fluxes from images: fixed apertures or fitting the point spread function.",
+  "Spectral extraction": "Collapsing a 2D spectrograph image to a 1D spectrum by tracing the spectral trace and subtracting sky.",
+  "Time series analysis": "Methods for detecting periodicity, trends, and transients in unevenly sampled astronomical light curves.",
+  "Pipeline automation (Snakemake, Luigi)": "Workflow managers that chain analysis steps into reproducible, parallelisable data reduction pipelines.",
+  "Random forests for classification": "Ensemble of decision trees used to classify objects (star/galaxy/quasar) from photometric or spectroscopic features.",
+  "Convolutional neural networks (morphology, transients)": "Deep learning models that extract spatial features from images — used for galaxy morphology and transient detection.",
+  "Variational autoencoders (anomaly detection)": "Generative models that learn a compressed representation and flag unusual objects as anomalies in large surveys.",
+  "Gaussian processes (RV, lightcurves)": "Flexible probabilistic models for correlated data — used to model stellar activity in RV and transit lightcurves.",
+  "Normalising flows (posterior estimation)": "Generative neural networks that learn complex posterior distributions — used in GW parameter estimation and SED fitting.",
+  "Foundation models & LLMs in astronomy": "Large pre-trained models being applied to spectrum analysis, literature search, and automated pipeline generation.",
+  "Parallelisation (MPI, OpenMP)": "Distributed- and shared-memory parallelism to run simulations and pipelines across many CPU cores.",
+  "GPU computing (CUDA, JAX)": "Graphics processing units accelerate array operations — transformative for N-body, ML, and Fourier-based codes.",
+  "Cluster job scheduling (SLURM, PBS)": "Batch queueing systems on HPC clusters that allocate nodes and cores to submitted jobs.",
+  "Data formats (FITS, HDF5, Zarr)": "Standard data formats in astronomy: FITS for images/spectra, HDF5/Zarr for large simulation and survey datasets.",
+  "Version control & reproducibility (Git, Docker)": "Git tracks code changes; Docker containers freeze the software environment — both essential for reproducible research.",
+};
+
+// ── Tooltip logic ─────────────────────────────────────────────────────────────
+const tooltip    = document.getElementById('tooltip');
+const tipLabel   = document.getElementById('tooltip-label');
+const tipText    = document.getElementById('tooltip-text');
+let   tipTimeout = null;
+
+document.addEventListener('mouseover', e => {
+  const sub = e.target.closest('.sub');
+  if (!sub) return;
+  const name = sub.textContent.trim();
+  const desc = tipDesc[name];
+  if (!desc) return;
+  tipLabel.textContent = name;
+  tipText.textContent  = desc;
+  positionTip(e);
+  clearTimeout(tipTimeout);
+  tooltip.classList.add('visible');
+});
+
+document.addEventListener('mousemove', e => {
+  if (tooltip.classList.contains('visible')) positionTip(e);
+});
+
+document.addEventListener('mouseout', e => {
+  const sub = e.target.closest('.sub');
+  if (!sub) return;
+  clearTimeout(tipTimeout);
+  tipTimeout = setTimeout(() => tooltip.classList.remove('visible'), 80);
+});
+
+function positionTip(e) {
+  const pad = 12;
+  const tw = 260, th = 80; // approximate
+  let x = e.clientX + pad;
+  let y = e.clientY + pad;
+  if (x + tw > window.innerWidth  - 8) x = e.clientX - tw - pad;
+  if (y + th > window.innerHeight - 8) y = e.clientY - th - pad;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top  = y + 'px';
+}
+
+renderChapters();
+renderBooks();
+</script>
+</body>
+</html>
